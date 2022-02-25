@@ -1,0 +1,8 @@
+$mr : 0 auto;
+$wi : 1280px;
+
+@mixin  fl {
+  content: "";
+  display: block;
+  clear: both;
+}
