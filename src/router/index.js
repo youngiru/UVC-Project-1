@@ -11,17 +11,26 @@ const routes = [
     children: []
   },
   {
+    path: '/home',
+    component: () => import('../views'),
+    children: []
+  },
+  {
     path: '/auth',
     component: () => import('../views/auth'),
     children: [
       {
-        path: 'auth/login',
+        path: '/auth/login',
         component: () => import('../views/auth/login.vue'),
         meta: { header: false } // 로그인 페이지에선 헤더 제거
       },
       {
-        path: 'auth/logout',
+        path: '/auth/logout',
         component: () => import('../views/auth/logout.vue')
+      },
+      {
+        path: '/auth/join',
+        component: () => import('../views/auth/join.vue')
       }
     ]
   },

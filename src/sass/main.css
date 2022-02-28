@@ -26,6 +26,16 @@ a {
   text-decoration: none;
 }
 
+.color_000 {
+  color: #000;
+  text-decoration: none;
+}
+
+.color_000:hover {
+  color: #000;
+  text-decoration: none;
+}
+
 #header {
   width: 1280px;
   margin: 0 auto;
@@ -177,6 +187,90 @@ a {
 #index_warp .index_activities .index_activities_imgbox li img {
   display: block;
   width: 100%;
+}
+
+#join_wrap {
+  width: 1280px;
+  margin: 0 auto 70px;
+}
+
+#join_wrap .join_title {
+  display: block;
+  text-align: center;
+  font-size: 50px;
+  line-height: 3;
+  letter-spacing: 7px;
+}
+
+#join_wrap .join_top_line {
+  display: block;
+  height: 2px;
+  background-color: #ccc;
+  width: 50%;
+  margin: 0 auto 70px;
+}
+
+#join_wrap .join_sm_text {
+  font-size: 18px;
+  line-height: 2.5;
+  font-family: 'GmarketSansMedium';
+  color: #000;
+}
+
+#join_wrap .join_address_title {
+  font-size: 18px;
+  line-height: 2.5;
+  font-family: 'GmarketSansMedium';
+  color: #000;
+  margin-right: 190px;
+}
+
+#join_wrap #address,
+#join_wrap #join_address,
+#join_wrap #detailAddress,
+#join_wrap #extraAddress {
+  width: 50%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+#join_wrap #address {
+  margin-bottom: 12px;
+}
+
+#join_wrap #detailAddress,
+#join_wrap #address {
+  margin-left: 223px;
+}
+
+#join_wrap #join_address_btn {
+  border: 0;
+  background-color: #f5b145;
+  color: #3d4b60;
+  font-size: 18px;
+  line-height: 2.1;
+  margin-left: 20px;
+  padding: 0 5px;
+}
+
+#join_wrap #join_submit {
+  display: block;
+  margin: 30px auto 0;
+  border: 0;
+  background-color: #f5b145;
+  color: #3d4b60;
+  line-height: 2.2;
+  width: 11%;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 #footer {

@@ -2,8 +2,8 @@
   <div id="header">
     <div class="header_u_af">
       <ul class="header_u">
-        <li><router-link to="/auth/login">로그인</router-link></li>
-        <li>회원가입</li>
+        <li><router-link to="/auth/login" class="color_000">로그인</router-link></li>
+        <li><router-link to="/auth/join" class="color_000">회원가입</router-link></li>
       </ul>
     </div>
     <h1>

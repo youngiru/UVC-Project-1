@@ -30,6 +30,15 @@ ul, ol, dl{
 a{
   text-decoration: none;
 }
+
+.color_000{
+  color: #000;
+  text-decoration: none;
+  &:hover{
+    color: #000;
+    text-decoration: none;
+  }
+}
 // 기본설정
 
 // header
@@ -135,6 +144,83 @@ a{
   }
 }
 // index
+
+// join
+#join_wrap{
+  width: $wi;
+  margin: 0 auto 70px;
+  .join_title{
+    display: block;
+    text-align: center;
+    font-size: 50px;
+    line-height: 3;
+    letter-spacing: 7px;
+  }
+  .join_top_line{
+    display: block;
+    height: 2px;
+    background-color: #ccc;
+    width: 50%;
+    margin: 0 auto 70px;
+  }
+  .join_sm_text{
+    font-size: 18px;
+    line-height: 2.5;
+    font-family: 'GmarketSansMedium';
+    color: #000;
+  }
+  .join_address_title{
+    font-size: 18px;
+    line-height: 2.5;
+    font-family: 'GmarketSansMedium';
+    color: #000;
+    margin-right: 190px;
+  }
+  #address,
+  #join_address,
+  #detailAddress,
+  #extraAddress{
+    width: 50%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  #address{
+    margin-bottom: 12px;
+  }
+  #detailAddress,
+  #address{
+    margin-left: 223px;
+  }
+  #join_address_btn{
+    border: 0;
+    background-color: $f5;
+    color: $d4;
+    font-size: 18px;
+    line-height: 2.1;
+    margin-left: 20px;
+    padding: 0 5px;
+  }
+  #join_submit{
+    display: block;
+    margin: 30px auto 0;
+    border: 0;
+    background-color: $f5;
+    color: $d4;
+    line-height: 2.2;
+    width: 11%;
+    font-size: 22px;
+    font-weight: bold;
+  }
+}
+// join
 
 // footer
 #footer{
