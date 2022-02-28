@@ -2,7 +2,7 @@
   <div id="header">
     <div class="header_u_af">
       <ul class="header_u">
-        <li>로그인</li>
+        <li><router-link to="/auth/login">로그인</router-link></li>
         <li>회원가입</li>
       </ul>
     </div>
@@ -17,7 +17,6 @@
         <li>대외활동</li>
         <li>공모전</li>
         <li>스터디</li>
-        <li>게시요청</li>
       </ul>
     </nav>
   </div>

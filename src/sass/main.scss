@@ -1,12 +1,22 @@
 @import "_var";
 
+// font
 @font-face {
   font-family: 'GmarketSansMedium';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+// footer font
+@font-face {
+  font-family: 'KoPubDotumMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/KoPubDotumMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+// font
 
+// 기본설정
 *{
   margin: 0;
   padding: 0;
@@ -20,7 +30,9 @@ ul, ol, dl{
 a{
   text-decoration: none;
 }
+// 기본설정
 
+// header
 #header{
   width: $wi;
   margin: $mr;
@@ -76,7 +88,9 @@ a{
     }
   }
 }
+// header
 
+// index - App.vue
 #index_warp{
   width: $wi;
   margin: $mr;
@@ -86,4 +100,79 @@ a{
       width: 100%;
     }
   }
+  .index_activities,
+  .index_competition,
+  .index_study{
+    margin-top: 50px;
+    span{
+      display: block;
+      font-size: 1.3rem;
+      font-weight: bold;
+      line-height: 2;
+      color: $d4;
+    }
+  }
+  .index_competition,
+  .index_activities{
+    .index_competition_imgbox,
+    .index_activities_imgbox{
+      &::after{@include fl}
+      li{
+        float: left;
+        width: calc(20% - 7px);
+        margin-right: 94px;
+        overflow: hidden;
+        height: 249px;
+        &:last-child{
+          margin-right: 0;
+        }
+        img{
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
 }
+// index
+
+// footer
+#footer{
+  background-color: #f4f3ef;
+  .footer_wrap{
+    width: $wi;
+    margin: $mr;
+    &::after{@include fl}
+    .foo_logo{
+      width: 180px;
+      float: left;
+      img{
+        display: block;
+        width: 100%;
+      }
+    }
+    .foo_text_box{
+      float: left;
+      margin-top: 20px;
+      .foo_u{
+        &::after{@include fl}
+        li{
+          float: left;
+          font-family: 'KoPubDotumMedium';
+          font-weight: bold;
+          color: #333;
+          margin-right: 20px;
+        }
+      }
+      .foo_text{
+        font-size: 15px;
+        margin-top: 17px;
+        font-family: 'KoPubDotumMedium';
+        font-weight: bold;
+        color: #333;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+// footer
