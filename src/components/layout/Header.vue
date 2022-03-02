@@ -7,15 +7,15 @@
       </ul>
     </div>
     <h1>
-      <a href="#">
+      <router-link to="/">
         <img src="../../assets/img/Free_Sample_By_Wix (5).png" />
-      </a>
+      </router-link>
     </h1>
     <nav class="header_nev">
       <ul class="header_nev_ul">
         <li>커뮤니티</li>
-        <li>대외활동</li>
-        <li>공모전</li>
+        <li><router-link to="/sub/activities" class="color_000">대외활동</router-link></li>
+        <li><router-link to="/sub/competition" class="color_000">공모전</router-link></li>
         <li>스터디</li>
       </ul>
     </nav>

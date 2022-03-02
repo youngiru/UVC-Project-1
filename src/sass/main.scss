@@ -29,6 +29,7 @@ ul, ol, dl{
 
 a{
   text-decoration: none;
+  color: #000;
 }
 
 .color_000{
@@ -99,7 +100,7 @@ a{
 }
 // header
 
-// index - App.vue
+// index
 #index_warp{
   width: $wi;
   margin: $mr;
@@ -121,10 +122,10 @@ a{
       color: $d4;
     }
   }
-  .index_competition,
-  .index_activities{
-    .index_competition_imgbox,
-    .index_activities_imgbox{
+  .index_activities,
+  .index_competition{
+    .index_activities_imgbox,
+    .index_competition_imgbox{
       &::after{@include fl}
       li{
         float: left;
@@ -222,6 +223,271 @@ a{
 }
 // join
 
+// activities
+#activities_wrap{
+  width: $wi;
+  margin: $mr;
+  h3{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 5px;
+  }
+  .menu-nav{
+    width: 60%;
+    margin: 30px auto 0;
+    &::after{@include fl}
+    .activities-search{
+      float: left;
+      width: 85%;
+    }
+    .activities-search-btn{
+      width: 10%;
+    }
+  }
+  .activities-kategorie{
+    text-align: center;
+    margin-bottom: 30px;
+    .activities-kategorie-btn{
+      margin-right: 3%;
+      border-radius: 23px;
+      width: 105px;
+      &:last-child{
+        margin-right: 0;
+      }
+      &:hover{
+        color: $d4;
+      }
+    }
+  }
+  .activities-main{
+    .activities-main-box{
+      overflow: hidden;
+      height: 246px;
+      margin-bottom: 20px;
+      img{
+        display: block;
+        width: 100%;
+      }
+    }
+    .activities-main-title{
+      display: block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .activities-main-text{
+      font-size: 13px;
+      color: #333;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+  .activities-num{
+    text-align: center;
+    margin-bottom: 70px;
+    .activities-num-btn{
+      margin-right: 3px;
+      border-radius: 0;
+      background-color: $d4;
+      border: 0;
+      a{
+        display: block;
+        color: $f5;
+      }
+      &:hover{
+        background-color: $f5;
+      }
+      &:hover a{
+        color: $d4;
+      }
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+}
+// activities
+
+// activities-detail
+#activities-detail-wrap{
+  width: $wi;
+  margin: $mr;
+  .activities-detail-k{
+    &::after{@include fl}
+    li{
+      float: left;
+      border: solid 1px $f5;
+      box-sizing: border-box;
+      width: 6%;
+      text-align: center;
+      border-radius: 13px;
+      line-height: 1.8;
+      margin-right: 10px;
+      background-color: $f5;
+      color: $d4;
+    }
+  }
+  .activities-detail-hea{
+    margin-bottom: 30px;
+    &::after{@include fl}
+    img{
+      display: block;
+      width: 9%;
+      float: left;
+      margin-right: 30px;
+    }
+    .activities-detail-textbox{
+      float: left;
+      .activities-detail-title{
+        display: block;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .activities-detail-text{
+        display: block;
+        font-size: 15px;
+        color: #333;
+      }
+    }
+  }
+  .activities-detail-main{
+    p{
+      .activities-detail-title{
+        font-family: 'KoPubDotumMedium';
+        display: block;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      span{
+        font-family: 'KoPubDotumMedium';
+        display: inline-block;
+        font-size: 15px;
+        color: #333;
+      }
+      .activities-detail-agency{
+        color: #ccc;
+        margin-right: 30px;
+      }
+    }
+    img{
+      display: block;
+      margin: 0 auto;
+      width: 80%;
+    }
+    p{
+      margin-top: 20px;
+      font-family: 'KoPubDotumMedium';
+      font-weight: 700;
+      color: #333;
+      line-height: 1.6;
+      .activities-detail-a{
+        color: blue;
+        font-family: 'KoPubDotumMedium';
+        font-size: 16px;
+      }
+      &:last-child{
+        margin-bottom: 70px;
+      }
+    }
+  }
+  .activities-detail-team-btn{
+    background-color: $f5;
+    color: $d4;
+    border: 0;
+    margin-bottom: 30px;
+  }
+}
+// activities-detail
+
+// competition
+#competition_wrap{
+  width: $wi;
+  margin: $mr;
+  h3{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 5px;
+  }
+  .menu-nav{
+    width: 60%;
+    margin: 30px auto 0;
+    &::after{@include fl}
+    .competition-search{
+      float: left;
+      width: 85%;
+    }
+    .competition-search-btn{
+      width: 10%;
+    }
+  }
+  .competition-kategorie{
+    text-align: center;
+    margin-bottom: 30px;
+    .competition-kategorie-btn{
+      margin-right: 3%;
+      border-radius: 23px;
+      width: 105px;
+      &:last-child{
+        margin-right: 0;
+      }
+      &:hover{
+        color: $d4;
+      }
+    }
+  }
+  .competition-main{
+    .competition-main-box{
+      overflow: hidden;
+      height: 246px;
+      margin-bottom: 20px;
+      img{
+        display: block;
+        width: 100%;
+      }
+    }
+    .competition-main-title{
+      display: block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .competition-main-text{
+      font-size: 13px;
+      color: #333;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+  .competition-num{
+    text-align: center;
+    margin-bottom: 70px;
+    .competition-num-btn{
+      margin-right: 3px;
+      border-radius: 0;
+      background-color: $d4;
+      border: 0;
+      a{
+        display: block;
+        color: $f5;
+      }
+      &:hover{
+        background-color: $f5;
+      }
+      &:hover a{
+        color: $d4;
+      }
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+}
+// competition
+
 // footer
 #footer{
   background-color: #f4f3ef;
@@ -262,3 +528,9 @@ a{
   }
 }
 // footer
+
+.nav-item{
+  > a {
+    color: #000 !important;
+  }
+}

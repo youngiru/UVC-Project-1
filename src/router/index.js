@@ -25,8 +25,32 @@ const routes = [
         meta: { header: false } // 로그인 페이지에선 헤더 제거
       },
       {
-        path: '/auth/logout',
-        component: () => import('../views/auth/logout.vue')
+        path: '/sub/activities',
+        component: () => import('../views/sub/activities.vue')
+      },
+      {
+        path: '/sub/activities-2',
+        component: () => import('../views/sub/activities-2.vue')
+      },
+      {
+        path: '/sub/activities-3',
+        component: () => import('../views/sub/activities-3.vue')
+      },
+      {
+        path: '/sub/competition',
+        component: () => import('../views/sub/competition.vue')
+      },
+      {
+        path: '/sub/competition-2',
+        component: () => import('../views/sub/competition-2.vue')
+      },
+      {
+        path: '/sub/competition-3',
+        component: () => import('../views/sub/competition-3.vue')
+      },
+      {
+        path: '/sub/activities-detail',
+        component: () => import('../views/sub/activities-detail.vue')
       },
       {
         path: '/auth/join',

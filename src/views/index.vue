@@ -67,3 +67,4 @@ export default {
   }
 }
 </script>
+<style src="@/sass/main.css"></style>

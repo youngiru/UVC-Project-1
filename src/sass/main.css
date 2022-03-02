@@ -24,6 +24,7 @@ ul, ol, dl {
 
 a {
   text-decoration: none;
+  color: #000;
 }
 
 .color_000 {
@@ -154,19 +155,19 @@ a {
   color: #3d4b60;
 }
 
-#index_warp .index_competition .index_competition_imgbox::after,
-#index_warp .index_competition .index_activities_imgbox::after,
+#index_warp .index_activities .index_activities_imgbox::after,
 #index_warp .index_activities .index_competition_imgbox::after,
-#index_warp .index_activities .index_activities_imgbox::after {
+#index_warp .index_competition .index_activities_imgbox::after,
+#index_warp .index_competition .index_competition_imgbox::after {
   content: "";
   display: block;
   clear: both;
 }
 
-#index_warp .index_competition .index_competition_imgbox li,
-#index_warp .index_competition .index_activities_imgbox li,
+#index_warp .index_activities .index_activities_imgbox li,
 #index_warp .index_activities .index_competition_imgbox li,
-#index_warp .index_activities .index_activities_imgbox li {
+#index_warp .index_competition .index_activities_imgbox li,
+#index_warp .index_competition .index_competition_imgbox li {
   float: left;
   width: calc(20% - 7px);
   margin-right: 94px;
@@ -174,17 +175,17 @@ a {
   height: 249px;
 }
 
-#index_warp .index_competition .index_competition_imgbox li:last-child,
-#index_warp .index_competition .index_activities_imgbox li:last-child,
+#index_warp .index_activities .index_activities_imgbox li:last-child,
 #index_warp .index_activities .index_competition_imgbox li:last-child,
-#index_warp .index_activities .index_activities_imgbox li:last-child {
+#index_warp .index_competition .index_activities_imgbox li:last-child,
+#index_warp .index_competition .index_competition_imgbox li:last-child {
   margin-right: 0;
 }
 
-#index_warp .index_competition .index_competition_imgbox li img,
-#index_warp .index_competition .index_activities_imgbox li img,
+#index_warp .index_activities .index_activities_imgbox li img,
 #index_warp .index_activities .index_competition_imgbox li img,
-#index_warp .index_activities .index_activities_imgbox li img {
+#index_warp .index_competition .index_activities_imgbox li img,
+#index_warp .index_competition .index_competition_imgbox li img {
   display: block;
   width: 100%;
 }
@@ -273,6 +274,326 @@ a {
   font-weight: bold;
 }
 
+#activities_wrap {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+#activities_wrap h3 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 5px;
+}
+
+#activities_wrap .menu-nav {
+  width: 60%;
+  margin: 30px auto 0;
+}
+
+#activities_wrap .menu-nav::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#activities_wrap .menu-nav .activities-search {
+  float: left;
+  width: 85%;
+}
+
+#activities_wrap .menu-nav .activities-search-btn {
+  width: 10%;
+}
+
+#activities_wrap .activities-kategorie {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#activities_wrap .activities-kategorie .activities-kategorie-btn {
+  margin-right: 3%;
+  border-radius: 23px;
+  width: 105px;
+}
+
+#activities_wrap .activities-kategorie .activities-kategorie-btn:last-child {
+  margin-right: 0;
+}
+
+#activities_wrap .activities-kategorie .activities-kategorie-btn:hover {
+  color: #3d4b60;
+}
+
+#activities_wrap .activities-main .activities-main-box {
+  overflow: hidden;
+  height: 246px;
+  margin-bottom: 20px;
+}
+
+#activities_wrap .activities-main .activities-main-box img {
+  display: block;
+  width: 100%;
+}
+
+#activities_wrap .activities-main .activities-main-title {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#activities_wrap .activities-main .activities-main-text {
+  font-size: 13px;
+  color: #333;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#activities_wrap .activities-num {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+#activities_wrap .activities-num .activities-num-btn {
+  margin-right: 3px;
+  border-radius: 0;
+  background-color: #3d4b60;
+  border: 0;
+}
+
+#activities_wrap .activities-num .activities-num-btn a {
+  display: block;
+  color: #f5b145;
+}
+
+#activities_wrap .activities-num .activities-num-btn:hover {
+  background-color: #f5b145;
+}
+
+#activities_wrap .activities-num .activities-num-btn:hover a {
+  color: #3d4b60;
+}
+
+#activities_wrap .activities-num .activities-num-btn:last-child {
+  margin-right: 0;
+}
+
+#activities-detail-wrap {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+#activities-detail-wrap .activities-detail-k::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#activities-detail-wrap .activities-detail-k li {
+  float: left;
+  border: solid 1px #f5b145;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 6%;
+  text-align: center;
+  border-radius: 13px;
+  line-height: 1.8;
+  margin-right: 10px;
+  background-color: #f5b145;
+  color: #3d4b60;
+}
+
+#activities-detail-wrap .activities-detail-hea {
+  margin-bottom: 30px;
+}
+
+#activities-detail-wrap .activities-detail-hea::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#activities-detail-wrap .activities-detail-hea img {
+  display: block;
+  width: 9%;
+  float: left;
+  margin-right: 30px;
+}
+
+#activities-detail-wrap .activities-detail-hea .activities-detail-textbox {
+  float: left;
+}
+
+#activities-detail-wrap .activities-detail-hea .activities-detail-textbox .activities-detail-title {
+  display: block;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#activities-detail-wrap .activities-detail-hea .activities-detail-textbox .activities-detail-text {
+  display: block;
+  font-size: 15px;
+  color: #333;
+}
+
+#activities-detail-wrap .activities-detail-main p .activities-detail-title {
+  font-family: 'KoPubDotumMedium';
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#activities-detail-wrap .activities-detail-main p span {
+  font-family: 'KoPubDotumMedium';
+  display: inline-block;
+  font-size: 15px;
+  color: #333;
+}
+
+#activities-detail-wrap .activities-detail-main p .activities-detail-agency {
+  color: #ccc;
+  margin-right: 30px;
+}
+
+#activities-detail-wrap .activities-detail-main img {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+
+#activities-detail-wrap .activities-detail-main p {
+  margin-top: 20px;
+  font-family: 'KoPubDotumMedium';
+  font-weight: 700;
+  color: #333;
+  line-height: 1.6;
+}
+
+#activities-detail-wrap .activities-detail-main p .activities-detail-a {
+  color: blue;
+  font-family: 'KoPubDotumMedium';
+  font-size: 16px;
+}
+
+#activities-detail-wrap .activities-detail-main p:last-child {
+  margin-bottom: 70px;
+}
+
+#activities-detail-wrap .activities-detail-team-btn {
+  background-color: #f5b145;
+  color: #3d4b60;
+  border: 0;
+  margin-bottom: 30px;
+}
+
+#competition_wrap {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+#competition_wrap h3 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 5px;
+}
+
+#competition_wrap .menu-nav {
+  width: 60%;
+  margin: 30px auto 0;
+}
+
+#competition_wrap .menu-nav::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#competition_wrap .menu-nav .competition-search {
+  float: left;
+  width: 85%;
+}
+
+#competition_wrap .menu-nav .competition-search-btn {
+  width: 10%;
+}
+
+#competition_wrap .competition-kategorie {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#competition_wrap .competition-kategorie .competition-kategorie-btn {
+  margin-right: 3%;
+  border-radius: 23px;
+  width: 105px;
+}
+
+#competition_wrap .competition-kategorie .competition-kategorie-btn:last-child {
+  margin-right: 0;
+}
+
+#competition_wrap .competition-kategorie .competition-kategorie-btn:hover {
+  color: #3d4b60;
+}
+
+#competition_wrap .competition-main .competition-main-box {
+  overflow: hidden;
+  height: 246px;
+  margin-bottom: 20px;
+}
+
+#competition_wrap .competition-main .competition-main-box img {
+  display: block;
+  width: 100%;
+}
+
+#competition_wrap .competition-main .competition-main-title {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#competition_wrap .competition-main .competition-main-text {
+  font-size: 13px;
+  color: #333;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#competition_wrap .competition-num {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+#competition_wrap .competition-num .competition-num-btn {
+  margin-right: 3px;
+  border-radius: 0;
+  background-color: #3d4b60;
+  border: 0;
+}
+
+#competition_wrap .competition-num .competition-num-btn a {
+  display: block;
+  color: #f5b145;
+}
+
+#competition_wrap .competition-num .competition-num-btn:hover {
+  background-color: #f5b145;
+}
+
+#competition_wrap .competition-num .competition-num-btn:hover a {
+  color: #3d4b60;
+}
+
+#competition_wrap .competition-num .competition-num-btn:last-child {
+  margin-right: 0;
+}
+
 #footer {
   background-color: #f4f3ef;
 }
@@ -324,5 +645,9 @@ a {
   font-weight: bold;
   color: #333;
   line-height: 1.5;
+}
+
+.nav-item > a {
+  color: #000 !important;
 }
 /*# sourceMappingURL=main.css.map */
