@@ -1,11 +1,11 @@
 const { Op } = require('sequelize');
-const { Posthashtag } = require('../models/index');
+const { Comment } = require('../models/index');
 
 const dao = {
   // 등록
   insert(params) {
     return new Promise((resolve, reject) => {
-      Posthashtag.create(params).then((inserted) => {
+      Post.create(params).then((inserted) => {
         resolve(inserted);
       }).catch((err) => {
         reject(err);
@@ -27,7 +27,7 @@ const dao = {
     setQuery.order = [['id', 'DESC']];
 
     return new Promise((resolve, reject) => {
-      Posthashtag.findAndCountAll({
+      Post.findAndCountAll({
         ...setQuery,
       }).then((selectedList) => {
         resolve(selectedList);
@@ -39,7 +39,8 @@ const dao = {
   // 상세정보 조회
   selectInfo(params) {
     return new Promise((resolve, reject) => {
-      Posthashtag.findByPk(
+      const setQuery = {}
+      Post.findByPk(
         params.id,
       ).then((selectedInfo) => {
         resolve(selectedInfo);
@@ -51,7 +52,7 @@ const dao = {
   // 수정
   update(params) {
     return new Promise((resolve, reject) => {
-      Posthashtag.update(
+      Post.update(
         params,
         {
           where: { id: params.id },
@@ -66,7 +67,7 @@ const dao = {
   // 삭제
   delete(params) {
     return new Promise((resolve, reject) => {
-      Posthashtag.destroy({
+      Post.destroy({
         where: { id: params.id },
       }).then((deleted) => {
         resolve({ deletedCount: deleted });

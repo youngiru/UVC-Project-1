@@ -5,7 +5,6 @@ const categoryRouter = require('./category');
 const postRouter = require('./post');
 const userRouter = require('./user');
 const hashtagRouter = require('./hashtag');
-const posthashtagRouter = require('./posthashtag');
 
 const router = express.Router();
 
@@ -31,6 +30,5 @@ router.use('/categories', categoryRouter);
 router.use('/posts', postRouter);
 router.use('/users', userRouter);
 router.use('/hashtags', hashtagRouter);
-router.use('./posthashtag', posthashtagRouter);
 
 module.exports = router;

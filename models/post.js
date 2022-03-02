@@ -21,17 +21,19 @@ module.exports = class Post extends Sequelize.Model {
       },
     }, {
       sequelize,
-      // tableName: 'tableName', // table명을 수동으로 생성 함
-      // freezeTableName: true, // true: table명의 복수형 변환을 막음
-      underscored: true, // true: underscored, false: camelCase
-      timestamps: true, // createAt, updatedAt
-      paranoid: true, // deletedAt
+      underscored: true,
+      timestamps: true,
+      paranoid: true,
+      charset: 'utf8',
+      collate: 'utf8_general_ci',
     });
   }
 
   static associate(db) {
+    db.Post.hasMany(db.Comment, { foreignKey: 'postId', sourceKey: 'id' });
     db.Post.belongsTo(db.User, { foreignKey: { name: 'userId', onDelete: 'SET NULL', as: 'User' }, targetKey: 'id' });
     db.Post.belongsTo(db.Category, { foreignKey: { name: 'categoryId', onDelete: 'CASCADE', as: 'Category' }, targetKey: 'id' });
-    db.Post.hasMany(db.Posthashtag, { foreignKey: 'postId', sourceKey: 'id' });
+    db.Post.belongsToMany(db.Hashtag, {through: 'posthashtag'}, {onDelete: 'CASCADE'})
+    db.Post.belongsToMany(db.User, {through: 'bookmark'}, {onDelete: 'CASCADE'})
   }
 };

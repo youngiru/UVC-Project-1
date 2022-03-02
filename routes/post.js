@@ -17,11 +17,11 @@ router.post('/', async (req, res) => {
     logger.info(`(post.reg.params) ${JSON.stringify(params)}`);
 
     // 입력값 null 체크
-    if (!params.userId) {
-      const err = new Error('Not allowed null (userId)');
+    if (!params.title) {
+      const err = new Error('Not allowed null (title)');
       logger.error(err.toString());
 
-      res.status(500).json({ err: err.toString() });
+      return res.status(500).json({ err: err.toString() });
     }
 
     // 비즈니스 로직 호출
@@ -29,9 +29,9 @@ router.post('/', async (req, res) => {
     logger.info(`(post.reg.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -39,11 +39,11 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const params = {
-      userId: req.body.userId,
-      categoryId: req.body.categoryId,
-      title: req.body.title,
-      content: req.body.content,
-      tag: req.body.tag,
+      userId: req.query.userId,
+      categoryId: req.query.categoryId,
+      title: req.query.title,
+      content: req.query.content,
+      tag: req.query.tag,
     };
     logger.info(`(post.list.params) ${JSON.stringify(params)}`);
 
@@ -51,9 +51,9 @@ router.get('/', async (req, res) => {
     logger.info(`(post.list.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -69,9 +69,9 @@ router.get('/:id', async (req, res) => {
     logger.info(`(post.info.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -91,9 +91,9 @@ router.put('/:id', async (req, res) => {
     logger.info(`(post.update.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -109,9 +109,9 @@ router.delete('/:id', async (req, res) => {
     logger.info(`(post.delete.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 

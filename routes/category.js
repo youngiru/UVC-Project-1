@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
       const err = new Error('Not allowed null (name)');
       logger.error(err.toString());
 
-      res.status(500).json({ err: err.toString() });
+      return res.status(500).json({ err: err.toString() });
     }
 
     // 비즈니스 로직 호출
@@ -26,9 +26,9 @@ router.post('/', async (req, res) => {
     logger.info(`(category.reg.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -44,9 +44,9 @@ router.get('/', async (req, res) => {
     logger.info(`(category.list.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -62,9 +62,9 @@ router.get('/:id', async (req, res) => {
     logger.info(`(category.info.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -82,9 +82,9 @@ router.put('/:id', async (req, res) => {
     logger.info(`(category.update.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -100,9 +100,9 @@ router.delete('/:id', async (req, res) => {
     logger.info(`(category.delete.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
