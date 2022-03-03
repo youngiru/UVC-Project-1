@@ -1,25 +1,37 @@
 const { Op } = require('sequelize');
-const { Comment } = require('../models/index');
+const { Teamcomment } = require('../models/index');
 
 const dao = {
   // 등록
   insert(params) {
     return new Promise((resolve, reject) => {
-      Comment.create(params).then((inserted) => {
+      Teamcomment.create(params).then((inserted) => {
         resolve(inserted);
       }).catch((err) => {
         reject(err);
       });
     });
   },
-  // 리스트 조회
+  // 게시글 전체 조회, 검색
   selectList(params) {
     // where 검색 조건
     const setQuery = {};
-    if (params.name) {
+    if (params.title) {
       setQuery.where = {
         ...setQuery.where,
-        name: { [Op.like]: `%${params.name}%` }, // like검색
+        title: { [Op.like]: `%${params.title}%` }, // like검색
+      };
+    }
+    if (params.tag) {
+      setQuery.where = {
+        ...setQuery.where,
+        tag: { [Op.like]: `%${params.tag}%` }, // like검색
+      };
+    }
+    if (params.categoryId) {
+      setQuery.where = {
+        ...setQuery.where,
+        categoryId: params.categoryId,
       };
     }
 
@@ -27,7 +39,7 @@ const dao = {
     setQuery.order = [['id', 'DESC']];
 
     return new Promise((resolve, reject) => {
-      Comment.findAndCountAll({
+      Teamcomment.findAndCountAll({
         ...setQuery,
       }).then((selectedList) => {
         resolve(selectedList);
@@ -38,10 +50,17 @@ const dao = {
   },
   // 상세정보 조회
   selectInfo(params) {
+    // const setQuery = {}
     return new Promise((resolve, reject) => {
-      const setQuery = {};
-      Comment.findByPk(
+      Teamcomment.findByPk(
         params.id,
+        {
+          include: [
+            {
+              model: Teamcomment,
+            },
+          ],
+        },
       ).then((selectedInfo) => {
         resolve(selectedInfo);
       }).catch((err) => {
@@ -52,7 +71,7 @@ const dao = {
   // 수정
   update(params) {
     return new Promise((resolve, reject) => {
-      Comment.update(
+      Teamcomment.update(
         params,
         {
           where: { id: params.id },
@@ -67,7 +86,7 @@ const dao = {
   // 삭제
   delete(params) {
     return new Promise((resolve, reject) => {
-      Comment.destroy({
+      Teamcomment.destroy({
         where: { id: params.id },
       }).then((deleted) => {
         resolve({ deletedCount: deleted });

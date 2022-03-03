@@ -1,16 +1,16 @@
 const Sequelize = require('sequelize');
 
-module.exports = class Comment extends Sequelize.Model {
+module.exports = class Teamcomment extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
-      postId: {
+      teamId: {
         type: Sequelize.INTEGER,
       },
       userId: {
         type: Sequelize.INTEGER,
       },
       content: {
-        type: Sequelize.STRING(255),
+        type: Sequelize.TEXT,
         allowNull: false,
       },
     }, {
@@ -24,7 +24,7 @@ module.exports = class Comment extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Comment.belongsTo(db.Post, { foreignKey: { name: 'postId', onDelete: 'CASCADE', as: 'Post' }, targetKey: 'id' });
-    db.Comment.belongsTo(db.User, { foreignKey: { name: 'userId', onDelete: 'SET NULL', as: 'User' }, targetKey: 'id' });
+    db.Teamcomment.belongsTo(db.Team, { foreignKey: { name: 'teamId', onDelete: 'CASCADEL', as: 'Team' }, targetKey: 'id' });
+    db.Teamcomment.belongsTo(db.User, { foreignKey: { name: 'userId', onDelete: 'SET NULL', as: 'User' }, targetKey: 'id' });
   }
 };

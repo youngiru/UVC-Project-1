@@ -31,7 +31,7 @@ const dao = {
     if (params.categoryId) {
       setQuery.where = {
         ...setQuery.where,
-        categoryId: params.categoryId, 
+        categoryId: params.categoryId,
       };
     }
 
@@ -40,7 +40,7 @@ const dao = {
 
     return new Promise((resolve, reject) => {
       Post.findAndCountAll({
-        ...setQuery,        
+        ...setQuery,
       }).then((selectedList) => {
         resolve(selectedList);
       }).catch((err) => {
@@ -58,9 +58,9 @@ const dao = {
           include: [
             {
               model: Comment,
-            }
-          ]
-        }
+            },
+          ],
+        },
       ).then((selectedInfo) => {
         resolve(selectedInfo);
       }).catch((err) => {
