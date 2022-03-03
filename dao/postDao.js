@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Post, Comment } = require('../models/index');
+const { Post, Comment, Category, Board, User } = require('../models/index');
 
 const dao = {
   // 등록
@@ -16,6 +16,33 @@ const dao = {
   selectList(params) {
     // where 검색 조건
     const setQuery = {};
+
+    if (!params.categoryId){
+      return new Promise((resolve, reject) => {
+        Post.findAndCountAll({
+          ...setQuery,
+          include:[
+            {
+              model: Category,
+              attributes:['id', 'name', 'boardId'],
+              where: {boardId: params.boardId},
+              include: [
+                {
+                  model: Board,
+                  attributes:['id', 'name'],
+                  // where: {id: params.boardId}
+                },
+              ]
+            }
+          ]
+        }).then((selectedList) => {
+          resolve(selectedList);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    }
+    
     if (params.title) {
       setQuery.where = {
         ...setQuery.where,
@@ -28,19 +55,36 @@ const dao = {
         tag: { [Op.like]: `%${params.tag}%` }, // like검색
       };
     }
-    if (params.categoryId) {
-      setQuery.where = {
-        ...setQuery.where,
-        categoryId: params.categoryId, 
-      };
-    }
 
     // order by 정렬 조건
     setQuery.order = [['id', 'DESC']];
 
+    // const categoryQuery = {}
+    // if(params.categoryId){
+    //   categoryQuery.where = {
+    //     ...categoryQuery.where,
+    //     id: params.categoryId
+    //   }
+    // } 
+
     return new Promise((resolve, reject) => {
       Post.findAndCountAll({
-        ...setQuery,        
+        ...setQuery,
+        include:[
+          {
+            model: Category,
+            attributes:['id', 'name'], 
+            // ...categoryQuery,
+            where: {id: params.categoryId},
+            include: [
+              {
+                model: Board,
+                attributes:['id', 'name'],
+                where: {id: params.boardId}
+              },
+            ]
+          }
+        ]
       }).then((selectedList) => {
         resolve(selectedList);
       }).catch((err) => {
@@ -58,6 +102,11 @@ const dao = {
           include: [
             {
               model: Comment,
+              attributes: ['id', 'userId', 'content'],
+              include: {
+                model: User,
+                attributes: ['nickname']
+              }
             }
           ]
         }

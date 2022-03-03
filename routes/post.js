@@ -3,12 +3,14 @@ const express = require('express');
 const router = express.Router();
 const logger = require('../lib/logger');
 const postService = require('../service/postService');
+// const commentService = require('../')
 
 // 등록
 router.post('/', async (req, res) => {
   try {
     const params = {
       userId: req.body.userId,
+      // boardId: req.body.boardId,
       categoryId: req.body.categoryId,
       title: req.body.title,
       content: req.body.content,
@@ -39,10 +41,11 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const params = {
-      userId: req.query.userId,
+      // userId: req.query.userId,
+      boardId: req.query.boardId,
       categoryId: req.query.categoryId,
       title: req.query.title,
-      content: req.query.content,
+      // content: req.query.content,
       tag: req.query.tag,
     };
     logger.info(`(post.list.params) ${JSON.stringify(params)}`);

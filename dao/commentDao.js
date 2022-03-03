@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+// const { Op } = require('sequelize');
 const { Comment } = require('../models/index');
 
 const dao = {
@@ -16,13 +16,18 @@ const dao = {
   selectList(params) {
     // where 검색 조건
     const setQuery = {};
-    if (params.name) {
+    if (params.postId) {
       setQuery.where = {
         ...setQuery.where,
-        name: { [Op.like]: `%${params.name}%` }, // like검색
+        postId: params.postId
       };
     }
-
+    if (params.userId) {
+      setQuery.where = {
+        ...setQuery.where,
+        userId: params.userId
+      };
+    }
     // order by 정렬 조건
     setQuery.order = [['id', 'DESC']];
 
