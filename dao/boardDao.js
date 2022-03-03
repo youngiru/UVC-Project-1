@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Board } = require('../models/index');
+const { Board, Category, Post } = require('../models/index');
 
 const dao = {
   insert(params) {
@@ -11,23 +11,23 @@ const dao = {
       });
     });
   },
-  // 리스트 조회
+  // 게시판 조회
   selectList(params) {
     // where 검색 조건
     const setQuery = {};
-    if (params.name) {
-      setQuery.where = {
-        ...setQuery.where,
-        name: { [Op.like]: `%${params.name}%` }, // like검색
-      };
-    }
 
     // order by 정렬 조건
     setQuery.order = [['id', 'DESC']];
 
     return new Promise((resolve, reject) => {
-      Board.findAndCountAll({
+      Board.findAll({
         ...setQuery,
+        include:[
+          {
+            model: Category,
+            attributes:['id', 'name'],
+          }
+        ]
       }).then((selectedList) => {
         resolve(selectedList);
       }).catch((err) => {
@@ -40,6 +40,14 @@ const dao = {
     return new Promise((resolve, reject) => {
       Board.findByPk(
         params.id,
+        {
+        include:[
+          {
+            model: Category,
+            attributes:['id', 'name'],
+          }
+        ]
+      }
       ).then((selectedInfo) => {
         resolve(selectedInfo);
       }).catch((err) => {

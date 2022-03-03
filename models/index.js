@@ -4,7 +4,7 @@ const Category = require('./category');
 const Post = require('./post');
 const User = require('./user');
 const Hashtag = require('./hashtag');
-const Posthashtag = require('./posthashtag');
+const Comment = require('./comment')
 
 const db = {};
 
@@ -16,14 +16,15 @@ db.Category = Category;
 db.Post = Post;
 db.User = User;
 db.Hashtag = Hashtag;
-db.Posthashtag = Posthashtag;
+db.Comment = Comment
+
 // model init
 Board.init(sequelize);
 Category.init(sequelize);
 Post.init(sequelize);
 User.init(sequelize);
 Hashtag.init(sequelize);
-Posthashtag.init(sequelize);
+Comment.init(sequelize)
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
@@ -31,9 +32,7 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-// Board.associate(db);
-// Category.associate(db);
-// Post.associate(db);
-// User.associate(db);
+// Post.associate(db)
+// Comment.associate(db)
 
 module.exports = db;

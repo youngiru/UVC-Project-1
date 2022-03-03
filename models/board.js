@@ -14,10 +14,13 @@ module.exports = class Board extends Sequelize.Model {
       underscored: true, // true: underscored, false: camelCase
       timestamps: true, // createAt, updatedAt
       paranoid: true, // deletedAt
+      charset: 'utf8',
+      collate: 'utf8_general_ci',
     });
   }
 
   static associate(db) {
+    // db.Board.hasMany(db.Post, { foreignKey: 'boardId', sourceKey: 'id' });
     db.Board.hasMany(db.Category, { foreignKey: 'boardId', sourceKey: 'id' });
   }
 };

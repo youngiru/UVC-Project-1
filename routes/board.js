@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
       const err = new Error('Not allowed null (name)');
       logger.error(err.toString());
 
-      res.status(500).json({ err: err.toString() });
+      return res.status(500).json({ err: err.toString() });
     }
 
     // 비즈니스 로직 호출
@@ -25,16 +25,16 @@ router.post('/', async (req, res) => {
     logger.info(`(board.reg.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 // 리스트 조회
 router.get('/', async (req, res) => {
   try {
     const params = {
-      name: req.query.name,
+      id: req.query.id,
     };
     logger.info(`(board.list.params) ${JSON.stringify(params)}`);
 
@@ -42,9 +42,9 @@ router.get('/', async (req, res) => {
     logger.info(`(board.list.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -60,9 +60,9 @@ router.get('/:id', async (req, res) => {
     logger.info(`(board.info.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -79,9 +79,9 @@ router.put('/:id', async (req, res) => {
     logger.info(`(board.update.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -97,9 +97,9 @@ router.delete('/:id', async (req, res) => {
     logger.info(`(board.delete.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
