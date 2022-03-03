@@ -10,7 +10,6 @@ router.post('/', async (req, res) => {
   try {
     const params = {
       userId: req.body.userId,
-      // boardId: req.body.boardId,
       categoryId: req.body.categoryId,
       title: req.body.title,
       content: req.body.content,
@@ -41,11 +40,10 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const params = {
-      // userId: req.query.userId,
       boardId: req.query.boardId,
       categoryId: req.query.categoryId,
       title: req.query.title,
-      // content: req.query.content,
+      content: req.query.content,
       tag: req.query.tag,
     };
     logger.info(`(post.list.params) ${JSON.stringify(params)}`);
@@ -82,6 +80,7 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const params = {
+      id: req.params.id,
       userId: req.body.userId,
       categoryId: req.body.categoryId,
       title: req.body.title,

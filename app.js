@@ -43,6 +43,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// cors 해결
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
+  // res.header("Access-Control-Allow-Origin", "https://example.com"); // 특정 도메인
+});
+
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 

@@ -17,6 +17,26 @@ const dao = {
     // where 검색 조건
     const setQuery = {};
 
+    
+    if (params.title) {
+      setQuery.where = {
+        ...setQuery.where,
+        title: { [Op.like]: `%${params.title}%` }, // like검색
+      };
+    }
+    if (params.tag) {
+      setQuery.where = {
+        ...setQuery.where,
+        tag: { [Op.like]: `%${params.tag}%` }, // like검색
+      };
+    }
+    if (params.content) {
+      setQuery.where = {
+        ...setQuery.where,
+        content: { [Op.like]: `%${params.content}%` }, // like검색
+      };
+    }
+    
     if (!params.categoryId){
       return new Promise((resolve, reject) => {
         Post.findAndCountAll({
@@ -41,19 +61,6 @@ const dao = {
           reject(err);
         });
       });
-    }
-    
-    if (params.title) {
-      setQuery.where = {
-        ...setQuery.where,
-        title: { [Op.like]: `%${params.title}%` }, // like검색
-      };
-    }
-    if (params.tag) {
-      setQuery.where = {
-        ...setQuery.where,
-        tag: { [Op.like]: `%${params.tag}%` }, // like검색
-      };
     }
 
     // order by 정렬 조건
