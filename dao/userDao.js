@@ -15,6 +15,19 @@ const dao = {
       });
     });
   },
+  // 로그인을 위한 사용자 조회
+  selectUser(params) {
+    return new Promise((resolve, reject) => {
+      User.findOne({
+        attributes: ['id', 'userid', 'password', 'name', 'auth'],
+        where: { userid: params.userid },
+      }).then((selectedOne) => {
+        resolve(selectedOne);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  },
   // 리스트 조회
   selectList(params) {
     // where 검색조건
