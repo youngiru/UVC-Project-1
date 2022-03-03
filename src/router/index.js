@@ -59,6 +59,10 @@ const routes = [
     ]
   },
   {
+    path: '/post',
+    component: () => import('../views/post')
+  },
+  {
     path: '*',
     component: () => import('../components/NotFound.vue')
   }
