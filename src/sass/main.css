@@ -488,6 +488,123 @@ a {
   margin-bottom: 30px;
 }
 
+#detail2_wrap {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+#detail2_wrap h3 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 5px;
+}
+
+#detail2_wrap .detail2-table {
+  margin-top: 30px;
+}
+
+#detail2_wrap .detail2-table form {
+  border: solid 1px #000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#detail2_wrap .detail2-table form table {
+  border-top: solid 2px #000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  height: 500px;
+  padding-top: 20px;
+}
+
+#detail2_wrap .detail2-table form table tr {
+  display: block;
+  border-bottom: solid 1px #ccc;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+#detail2_wrap .detail2-table form table tr:last-child {
+  margin-top: 20px;
+  border: 0;
+}
+
+#detail2_wrap .detail2-table form table tr:last-child th {
+  display: block;
+  width: 7%;
+  margin-right: 0;
+  padding: 0;
+}
+
+#detail2_wrap .detail2-table form table tr:last-child td {
+  margin: 15px 20px 0;
+}
+
+#detail2_wrap .detail2-table form table tr th {
+  display: inline-block;
+  margin-right: 30px;
+  text-indent: 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-right: solid 1px #ccc;
+  padding-right: 30px;
+}
+
+#detail2_wrap .detail2-table form table tr td {
+  display: inline-block;
+}
+
+#detail2_wrap .detail2-textareabox {
+  margin-top: 20px;
+}
+
+#detail2_wrap .detail2-textareabox span {
+  display: block;
+  font-size: 19px;
+}
+
+#detail2_wrap .detail2-textareabox .detail2-textarea {
+  margin-top: 5px;
+  width: 93%;
+  display: inline-block;
+}
+
+#detail2_wrap .detail2-textareabox button {
+  display: inline-block;
+  border: 0;
+  background: #3d4b60;
+  color: #f5b145;
+  height: 85px;
+  width: 5%;
+  margin-left: 2%;
+}
+
+#detail2_wrap .detail2-textareabox .detail2-textarea,
+#detail2_wrap .detail2-textareabox button {
+  vertical-align: middle;
+}
+
+#detail2_wrap .detail2-btn {
+  margin: 30px auto 70px;
+  text-align: center;
+}
+
+#detail2_wrap .detail2-btn button {
+  display: inline-block;
+  width: 10%;
+  border: 0;
+  background-color: #3d4b60;
+  line-height: 2.8;
+}
+
+#detail2_wrap .detail2-btn button a {
+  color: #f5b145;
+  display: block;
+}
+
 #competition_wrap {
   width: 1280px;
   margin: 0 auto;
@@ -592,6 +709,231 @@ a {
 
 #competition_wrap .competition-num .competition-num-btn:last-child {
   margin-right: 0;
+}
+
+#competition-detail-wrap {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+#competition-detail-wrap .competition-detail-k::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#competition-detail-wrap .competition-detail-k li {
+  float: left;
+  border: solid 1px #f5b145;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 6%;
+  text-align: center;
+  border-radius: 13px;
+  line-height: 1.8;
+  margin-right: 10px;
+  background-color: #f5b145;
+  color: #3d4b60;
+}
+
+#competition-detail-wrap .competition-detail-hea {
+  margin-bottom: 30px;
+}
+
+#competition-detail-wrap .competition-detail-hea::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#competition-detail-wrap .competition-detail-hea img {
+  display: block;
+  width: 9%;
+  float: left;
+  margin-right: 30px;
+}
+
+#competition-detail-wrap .competition-detail-hea .competition-detail-textbox {
+  float: left;
+}
+
+#competition-detail-wrap .competition-detail-hea .competition-detail-textbox .competition-detail-title {
+  display: block;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#competition-detail-wrap .competition-detail-hea .competition-detail-textbox .competition-detail-text {
+  display: block;
+  font-size: 15px;
+  color: #333;
+}
+
+#competition-detail-wrap .competition-detail-main p .competition-detail-title {
+  font-family: 'KoPubDotumMedium';
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#competition-detail-wrap .competition-detail-main p span {
+  font-family: 'KoPubDotumMedium';
+  display: inline-block;
+  font-size: 15px;
+  color: #333;
+}
+
+#competition-detail-wrap .competition-detail-main p .competition-detail-agency {
+  color: #ccc;
+  margin-right: 30px;
+}
+
+#competition-detail-wrap .competition-detail-main img {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+
+#competition-detail-wrap .competition-detail-main p {
+  margin-top: 20px;
+  font-family: 'KoPubDotumMedium';
+  font-weight: 700;
+  color: #333;
+  line-height: 1.6;
+}
+
+#competition-detail-wrap .competition-detail-main p .competition-detail-a {
+  color: blue;
+  font-family: 'KoPubDotumMedium';
+  font-size: 16px;
+}
+
+#competition-detail-wrap .competition-detail-main p:last-child {
+  margin-bottom: 70px;
+}
+
+#competition-detail-wrap .competition-detail-team-btn {
+  background-color: #f5b145;
+  color: #3d4b60;
+  border: 0;
+  margin-bottom: 30px;
+}
+
+#competition2_wrap {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+#competition2_wrap h3 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 5px;
+}
+
+#competition2_wrap .competition2-table {
+  margin-top: 30px;
+}
+
+#competition2_wrap .competition2-table form {
+  border: solid 1px #000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#competition2_wrap .competition2-table form table {
+  border-top: solid 2px #000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  height: 500px;
+  padding-top: 20px;
+}
+
+#competition2_wrap .competition2-table form table tr {
+  display: block;
+  border-bottom: solid 1px #ccc;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+#competition2_wrap .competition2-table form table tr:last-child {
+  margin-top: 20px;
+  border: 0;
+}
+
+#competition2_wrap .competition2-table form table tr:last-child th {
+  display: block;
+  width: 7%;
+  margin-right: 0;
+  padding: 0;
+}
+
+#competition2_wrap .competition2-table form table tr:last-child td {
+  margin: 15px 20px 0;
+}
+
+#competition2_wrap .competition2-table form table tr th {
+  display: inline-block;
+  margin-right: 30px;
+  text-indent: 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-right: solid 1px #ccc;
+  padding-right: 30px;
+}
+
+#competition2_wrap .competition2-table form table tr td {
+  display: inline-block;
+}
+
+#competition2_wrap .competition2-textareabox {
+  margin-top: 20px;
+}
+
+#competition2_wrap .competition2-textareabox span {
+  display: block;
+  font-size: 19px;
+}
+
+#competition2_wrap .competition2-textareabox .competition2-textarea {
+  margin-top: 5px;
+  width: 93%;
+  display: inline-block;
+}
+
+#competition2_wrap .competition2-textareabox button {
+  display: inline-block;
+  border: 0;
+  background: #3d4b60;
+  color: #f5b145;
+  height: 85px;
+  width: 5%;
+  margin-left: 2%;
+}
+
+#competition2_wrap .competition2-textareabox .competition2-textarea,
+#competition2_wrap .competition2-textareabox button {
+  vertical-align: middle;
+}
+
+#competition2_wrap .competition2-btn {
+  margin: 30px auto 70px;
+  text-align: center;
+}
+
+#competition2_wrap .competition2-btn button {
+  display: inline-block;
+  width: 10%;
+  border: 0;
+  background-color: #3d4b60;
+  line-height: 2.8;
+}
+
+#competition2_wrap .competition2-btn button a {
+  color: #f5b145;
+  display: block;
 }
 
 #footer {

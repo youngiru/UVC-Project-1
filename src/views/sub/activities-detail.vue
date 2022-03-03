@@ -71,7 +71,10 @@
             :items="activites_data"
             :fields="activites_title"
             style="margin-bottom: 70px"
-          ></b-table>
+            selectable
+            @row-selected="onRowSelected"
+          >
+          </b-table>
         </b-tab>
       </b-tabs>
     </div>
@@ -101,6 +104,11 @@ export default {
         { activites_num: 3, activites_name: '최송이', activites_title_data: '모집합니다' },
         { activites_num: 4, activites_name: '박정혜', activites_title_data: '모집합니다' }
       ]
+    }
+  },
+  methods: {
+    onRowSelected() {
+      this.$router.push('/sub/activities-detail-2')
     }
   }
 }
