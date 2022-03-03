@@ -69,6 +69,10 @@ const routes = [
         component: () => import('../views/sub/study.vue')
       },
       {
+        path: '/sub/study-detail',
+        component: () => import('../views/sub/study-detail.vue')
+      },
+      {
         path: '/auth/join',
         component: () => import('../views/auth/join.vue')
       }
