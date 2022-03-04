@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const methodOverride = require('method-override')
 const path = require('path');
 const cookieParser = require('cookie-parser');
 // const logger = require('morgan');
@@ -34,20 +35,27 @@ models.sequelize.authenticate().then(() => {
   logger.error('DB Connection fail', err);
 });
 
+app.use(methodOverride('X-HTTP-Method-Override'))
+
 // app.use(logger('dev'));
 app.use(cors(corsConfig));
+
+// cors 해결
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')  // 모든 도메인
+})
+
+app.get('/', (req, res, next) => {
+  res.json({ msg: 'This is CORS-enabled for all origins!' });
+});
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// cors 해결
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
-  // res.header("Access-Control-Allow-Origin", "https://example.com"); // 특정 도메인
-});
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);

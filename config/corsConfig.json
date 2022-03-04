@@ -1,4 +1,6 @@
 {
   "origin": ["http://localhost:3000"],
-  "methods": ["OPTIONS", "GET", "POST", "HEAD", "PUT", "DELETE"]
+  "methods": ["OPTIONS", "GET", "POST", "HEAD", "PUT", "DELETE"],
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
 }

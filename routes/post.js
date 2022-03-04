@@ -1,4 +1,5 @@
 const express = require('express');
+const methodOverride = require('method-override')
 
 const router = express.Router();
 const logger = require('../lib/logger');
