@@ -9,6 +9,7 @@
           <b-form-input id="text-password" type="password" aria-describedby="password-help-block"></b-form-input>
         </b-form>
       </div>
+      <button>로그인</button>
     </div>
   </div>
 </template>

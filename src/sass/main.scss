@@ -401,6 +401,103 @@ a{
 }
 // activities-detail
 
+// activities-detail-2
+#detail2_wrap{
+  width: $wi;
+  margin: $mr;
+  h3{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 5px;
+  }
+  .detail2-table{
+    margin-top: 30px;
+    form{
+      border: solid 1px #000;
+      box-sizing: border-box;
+      table{
+        border-top: solid 2px #000;
+        box-sizing: border-box;
+        display: block;
+        height: 500px;
+        padding-top: 20px;
+        tr{
+          display: block;
+          border-bottom: solid 1px #ccc;
+          box-sizing: border-box;
+          padding-bottom: 20px;
+          &:last-child{
+            margin-top: 20px;
+            border: 0;
+            th{
+              display: block;
+              width: 7%;
+              margin-right: 0;
+              padding: 0;
+            }
+            td{
+              margin: 15px 20px 0;
+            }
+          }
+          th{
+            display: inline-block;
+            margin-right: 30px;
+            text-indent: 30px;
+            box-sizing: border-box;
+            border-right: solid 1px #ccc;
+            padding-right: 30px;
+          }
+          td{
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  .detail2-textareabox{
+    margin-top: 20px;
+    span{
+      display: block;
+      font-size: 19px;
+    }
+    .detail2-textarea{
+      margin-top: 5px;
+      width: 93%;
+      display: inline-block;
+    }
+    button{
+      display: inline-block;
+      border: 0;
+      background: $d4;
+      color: $f5;
+      height: 85px;
+      width: 5%;
+      margin-left: 2%;
+    }
+    .detail2-textarea,
+    button{
+      vertical-align: middle;
+    }
+  }
+  .detail2-btn{
+    margin: 30px auto 70px;
+    text-align: center;
+    button{
+      display: inline-block;
+      width: 10%;
+      border: 0;
+      background-color: $d4;
+      line-height: 2.8;
+      a{
+        color: $f5;
+        display: block;
+      }
+    }
+  }
+}
+// activities-detail-2
+
 // competition
 #competition_wrap{
   width: $wi;
@@ -487,6 +584,305 @@ a{
   }
 }
 // competition
+
+// competition-detail
+#competition-detail-wrap{
+  width: $wi;
+  margin: $mr;
+  .competition-detail-k{
+    &::after{@include fl}
+    li{
+      float: left;
+      border: solid 1px $f5;
+      box-sizing: border-box;
+      width: 6%;
+      text-align: center;
+      border-radius: 13px;
+      line-height: 1.8;
+      margin-right: 10px;
+      background-color: $f5;
+      color: $d4;
+    }
+  }
+  .competition-detail-hea{
+    margin-bottom: 30px;
+    &::after{@include fl}
+    img{
+      display: block;
+      width: 9%;
+      float: left;
+      margin-right: 30px;
+    }
+    .competition-detail-textbox{
+      float: left;
+      .competition-detail-title{
+        display: block;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .competition-detail-text{
+        display: block;
+        font-size: 15px;
+        color: #333;
+      }
+    }
+  }
+  .competition-detail-main{
+    p{
+      .competition-detail-title{
+        font-family: 'KoPubDotumMedium';
+        display: block;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      span{
+        font-family: 'KoPubDotumMedium';
+        display: inline-block;
+        font-size: 15px;
+        color: #333;
+      }
+      .competition-detail-agency{
+        color: #ccc;
+        margin-right: 30px;
+      }
+    }
+    img{
+      display: block;
+      margin: 0 auto;
+      width: 80%;
+    }
+    p{
+      margin-top: 20px;
+      font-family: 'KoPubDotumMedium';
+      font-weight: 700;
+      color: #333;
+      line-height: 1.6;
+      .competition-detail-a{
+        color: blue;
+        font-family: 'KoPubDotumMedium';
+        font-size: 16px;
+      }
+      &:last-child{
+        margin-bottom: 70px;
+      }
+    }
+  }
+  .competition-detail-team-btn{
+    background-color: $f5;
+    color: $d4;
+    border: 0;
+    margin-bottom: 30px;
+  }
+}
+// competition-detail
+
+// competition-detail-2
+#competition2_wrap{
+  width: $wi;
+  margin: $mr;
+  h3{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 5px;
+  }
+  .competition2-table{
+    margin-top: 30px;
+    form{
+      border: solid 1px #000;
+      box-sizing: border-box;
+      table{
+        border-top: solid 2px #000;
+        box-sizing: border-box;
+        display: block;
+        height: 500px;
+        padding-top: 20px;
+        tr{
+          display: block;
+          border-bottom: solid 1px #ccc;
+          box-sizing: border-box;
+          padding-bottom: 20px;
+          &:last-child{
+            margin-top: 20px;
+            border: 0;
+            th{
+              display: block;
+              width: 7%;
+              margin-right: 0;
+              padding: 0;
+            }
+            td{
+              margin: 15px 20px 0;
+            }
+          }
+          th{
+            display: inline-block;
+            margin-right: 30px;
+            text-indent: 30px;
+            box-sizing: border-box;
+            border-right: solid 1px #ccc;
+            padding-right: 30px;
+          }
+          td{
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  .competition2-textareabox{
+    margin-top: 20px;
+    span{
+      display: block;
+      font-size: 19px;
+    }
+    .competition2-textarea{
+      margin-top: 5px;
+      width: 93%;
+      display: inline-block;
+    }
+    button{
+      display: inline-block;
+      border: 0;
+      background: $d4;
+      color: $f5;
+      height: 85px;
+      width: 5%;
+      margin-left: 2%;
+    }
+    .competition2-textarea,
+    button{
+      vertical-align: middle;
+    }
+  }
+  .competition2-btn{
+    margin: 30px auto 70px;
+    text-align: center;
+    button{
+      display: inline-block;
+      width: 10%;
+      border: 0;
+      background-color: $d4;
+      line-height: 2.8;
+      a{
+        color: $f5;
+        display: block;
+      }
+    }
+  }
+}
+// competition-detail-2
+
+// study
+#study_wrap{
+  width: $wi;
+  margin: $mr;
+  h3{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+  }
+}
+// study
+
+// study-detail
+#study-detail_wrap{
+  width: $wi;
+  margin: $mr;
+  h3{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 5px;
+  }
+  .study-detail-table{
+    margin-top: 30px;
+    form{
+      border: solid 1px #000;
+      box-sizing: border-box;
+      table{
+        border-top: solid 2px #000;
+        box-sizing: border-box;
+        display: block;
+        height: 500px;
+        padding-top: 20px;
+        tr{
+          display: block;
+          border-bottom: solid 1px #ccc;
+          box-sizing: border-box;
+          padding-bottom: 20px;
+          &:last-child{
+            margin-top: 20px;
+            border: 0;
+            th{
+              display: block;
+              width: 7%;
+              margin-right: 0;
+              padding: 0;
+            }
+            td{
+              margin: 15px 20px 0;
+            }
+          }
+          th{
+            display: inline-block;
+            margin-right: 30px;
+            text-indent: 30px;
+            box-sizing: border-box;
+            border-right: solid 1px #ccc;
+            padding-right: 30px;
+          }
+          td{
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  .study-detail-textareabox{
+    margin-top: 20px;
+    span{
+      display: block;
+      font-size: 19px;
+    }
+    .study-detail-textarea{
+      margin-top: 5px;
+      width: 93%;
+      display: inline-block;
+    }
+    button{
+      display: inline-block;
+      border: 0;
+      background: $d4;
+      color: $f5;
+      height: 85px;
+      width: 5%;
+      margin-left: 2%;
+    }
+    .study-detail-textarea,
+    button{
+      vertical-align: middle;
+    }
+  }
+  .study-detail-btn{
+    margin: 30px auto 70px;
+    text-align: center;
+    button{
+      display: inline-block;
+      width: 10%;
+      border: 0;
+      background-color: $d4;
+      line-height: 2.8;
+      a{
+        color: $f5;
+        display: block;
+      }
+    }
+  }
+}
+// study-detail
 
 // footer
 #footer{

@@ -37,6 +37,14 @@ const routes = [
         component: () => import('../views/sub/activities-3.vue')
       },
       {
+        path: '/sub/activities-detail',
+        component: () => import('../views/sub/activities-detail.vue')
+      },
+      {
+        path: '/sub/activities-detail-2',
+        component: () => import('../views/sub/activities-detail-2.vue')
+      },
+      {
         path: '/sub/competition',
         component: () => import('../views/sub/competition.vue')
       },
@@ -49,8 +57,20 @@ const routes = [
         component: () => import('../views/sub/competition-3.vue')
       },
       {
-        path: '/sub/activities-detail',
-        component: () => import('../views/sub/activities-detail.vue')
+        path: '/sub/competition-detail',
+        component: () => import('../views/sub/competition-detail.vue')
+      },
+      {
+        path: '/sub/competition-detail-2',
+        component: () => import('../views/sub/competition-detail-2.vue')
+      },
+      {
+        path: '/sub/study',
+        component: () => import('../views/sub/study.vue')
+      },
+      {
+        path: '/sub/study-detail',
+        component: () => import('../views/sub/study-detail.vue')
       },
       {
         path: '/auth/join',

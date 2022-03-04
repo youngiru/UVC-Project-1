@@ -27,7 +27,7 @@
     <div class="competition-main">
       <b-row v-for="n in 1" :key="n">
         <b-col v-for="k in member.length" :key="k" cols="12" md="3" style="margin-bottom: 20px">
-          <b-card>
+          <b-card @click="$router.push('/sub/competition-detail')">
             <div class="competition-main-box">
               <img :src="member[k - 1].poto" alt="" />
             </div>
