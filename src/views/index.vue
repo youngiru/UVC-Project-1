@@ -7,7 +7,9 @@
       <span>대외할동</span>
       <ul class="index_activities_imgbox">
         <li>
-          <img src="@/assets/img/test_img.jpg" />
+          <router-link to="/sub/activities-detail">
+            <img src="@/assets/img/test_img.jpg" />
+          </router-link>
         </li>
         <li>
           <img src="@/assets/img/test_img.jpg" />
@@ -24,7 +26,9 @@
       <span>공모전</span>
       <ul class="index_competition_imgbox">
         <li>
-          <img src="@/assets/img/test_img.jpg" />
+          <router-link to="/sub/competition-detail">
+            <img src="@/assets/img/test_img.jpg" />
+          </router-link>
         </li>
         <li>
           <img src="@/assets/img/test_img.jpg" />

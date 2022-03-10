@@ -165,7 +165,8 @@ export default {
       this.$store.dispatch('actMypageInfo', id)
 
       // 3. 모달 출력
-      this.$bvModal.show('modal-mypage-inform')
+      // this.$bvModal.show('modal-mypage-inform')
+      this.$root.$emit('bv::show::modal', 'modal-mypage-inform')
     },
     onClickDelete(id) {
       // 삭제
