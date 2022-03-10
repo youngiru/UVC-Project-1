@@ -1066,6 +1066,80 @@ a {
   display: block;
 }
 
+#mypage_wrap {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+#mypage_wrap h3 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 5px;
+}
+
+#mypage_wrap .mypage-mainbox {
+  border: solid 1px #ccc;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 70px;
+}
+
+#mypage_wrap .mypage-mainbox .mypage_title {
+  display: block;
+  font-size: 24px;
+  color: #333;
+}
+
+#mypage_wrap .mypage-mainbox .container {
+  margin: 0;
+  padding: 0;
+}
+
+#mypage_wrap .mypage-mainbox .container .mypage_imgbox {
+  border-right: solid 1px #ccc;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-top: 20px;
+}
+
+#mypage_wrap .mypage-mainbox .container .mypage_imgbox .mypage_img {
+  display: block;
+  width: 100%;
+}
+
+#mypage_wrap .mypage-mainbox .container .mypage_textbox {
+  margin-top: 20px;
+}
+
+#mypage_wrap .mypage-mainbox .container .mypage_textbox .mypage_information .mypage_inform_text {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+  color: #000;
+}
+
+#mypage_wrap .mypage-mainbox .container .mypage_textbox .mypage_information span {
+  display: inline-block;
+  font-size: 17px;
+  color: #333;
+  line-height: 2;
+}
+
+#mypage_wrap .mypage-mainbox .mypage_inform_btnbox {
+  text-align: right;
+}
+
+#mypage_wrap .mypage-mainbox .mypage_inform_btnbox .mypage_inform_btn {
+  display: inline-block;
+  border: 0;
+  background-color: #3d4b60;
+  color: #f5b145;
+  width: 11%;
+  line-height: 2;
+}
+
 #footer {
   background-color: #f4f3ef;
 }

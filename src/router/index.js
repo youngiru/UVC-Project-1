@@ -75,6 +75,10 @@ const routes = [
       {
         path: '/auth/join',
         component: () => import('../views/auth/join.vue')
+      },
+      {
+        path: '/sub/mypage',
+        component: () => import('../views/sub/mypage.vue')
       }
     ]
   },

@@ -4,6 +4,7 @@
       <ul class="header_u">
         <li><router-link to="/auth/login" class="color_000">로그인</router-link></li>
         <li><router-link to="/auth/join" class="color_000">회원가입</router-link></li>
+        <li><router-link to="/sub/mypage" class="color_000">마이페이지</router-link></li>
       </ul>
     </div>
     <h1>

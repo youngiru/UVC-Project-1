@@ -884,6 +884,71 @@ a{
 }
 // study-detail
 
+// my page
+#mypage_wrap{
+  width: $wi;
+  margin: $mr;
+  h3{  
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 5px;
+  }
+  .mypage-mainbox{
+    border: solid 1px #ccc;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 70px;
+    .mypage_title{
+      display: block;
+      font-size: 24px;
+      color: #333;
+    }
+    .container{
+      margin: 0;
+      padding: 0;
+      .mypage_imgbox{
+        border-right: solid 1px #ccc;
+        box-sizing: border-box;
+        margin-top: 20px;
+        .mypage_img{
+          display: block;
+          width: 100%;
+        }
+      }
+      .mypage_textbox{
+        margin-top: 20px;
+        .mypage_information{
+          .mypage_inform_text{
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 20px;
+            color: #000;
+          }
+          span{
+            display: inline-block;
+            font-size: 17px;
+            color: #333;
+            line-height: 2;
+          }
+        }
+      }
+    }
+    .mypage_inform_btnbox{
+      text-align: right;
+      .mypage_inform_btn{
+        display: inline-block;
+        border: 0;
+        background-color: $d4;
+        color: $f5;
+        width: 11%;
+        line-height: 2;
+      }
+    }
+  }
+}
+// my page
+
 // footer
 #footer{
   background-color: #f4f3ef;
