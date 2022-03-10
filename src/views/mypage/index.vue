@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import inform from './Mypageinform.vue'
+import inform from './inform.vue'
 
 export default {
   components: {

@@ -7,13 +7,62 @@ const routes = [
   {
     path: '/',
     component: () => import('../views'),
-    redirect: '/home',
-    children: []
-  },
-  {
-    path: '/home',
-    component: () => import('../views'),
-    children: []
+    children: [
+      {
+        path: '/',
+        component: () => import('../views/home.vue')
+      },
+      {
+        path: '/sub',
+        component: () => import('../views/sub'),
+        children: [
+          {
+            path: '/sub/activities',
+            component: () => import('../views/sub/activities')
+          },
+          {
+            path: '/sub/activities/activities-2',
+            component: () => import('../views/sub/activities/activities-2.vue')
+          },
+          {
+            path: '/sub/activities/activities-3',
+            component: () => import('../views/sub/activities/activities-3.vue')
+          },
+          {
+            path: '/sub/activities/activities-detail',
+            component: () => import('../views/sub/activities/activities-detail.vue')
+          },
+          {
+            path: '/sub/competition',
+            component: () => import('../views/sub/competition')
+          },
+          {
+            path: '/sub/competition/competition-2',
+            component: () => import('../views/sub/competition/competition-2.vue')
+          },
+          {
+            path: '/sub/competition/competition-3',
+            component: () => import('../views/sub/competition/competition-3.vue')
+          },
+          {
+            path: '/sub/competition/competition-detail',
+            component: () => import('../views/sub/competition/competition-detail.vue')
+          },
+          {
+            path: '/sub/competition/competition-detail-2',
+            component: () => import('../views/sub/competition/competition-detail-2.vue')
+          },
+          {
+            path: '/sub/study',
+            component: () => import('../views/sub/study')
+          },
+          {
+            path: '/sub/study/study-detail',
+            component: () => import('../views/sub/study/study-detail.vue')
+          }
+        ]
+      }
+    ]
   },
   {
     path: '/auth',
@@ -25,60 +74,27 @@ const routes = [
         meta: { header: false } // 로그인 페이지에선 헤더 제거
       },
       {
-        path: '/sub/activities',
-        component: () => import('../views/sub/activities.vue')
-      },
-      {
-        path: '/sub/activities-2',
-        component: () => import('../views/sub/activities-2.vue')
-      },
-      {
-        path: '/sub/activities-3',
-        component: () => import('../views/sub/activities-3.vue')
-      },
-      {
-        path: '/sub/activities-detail',
-        component: () => import('../views/sub/activities-detail.vue')
-      },
-      {
-        path: '/sub/activities-detail-2',
-        component: () => import('../views/sub/activities-detail-2.vue')
-      },
-      {
-        path: '/sub/competition',
-        component: () => import('../views/sub/competition.vue')
-      },
-      {
-        path: '/sub/competition-2',
-        component: () => import('../views/sub/competition-2.vue')
-      },
-      {
-        path: '/sub/competition-3',
-        component: () => import('../views/sub/competition-3.vue')
-      },
-      {
-        path: '/sub/competition-detail',
-        component: () => import('../views/sub/competition-detail.vue')
-      },
-      {
-        path: '/sub/competition-detail-2',
-        component: () => import('../views/sub/competition-detail-2.vue')
-      },
-      {
-        path: '/sub/study',
-        component: () => import('../views/sub/study.vue')
-      },
-      {
-        path: '/sub/study-detail',
-        component: () => import('../views/sub/study-detail.vue')
+        path: '/auth/logout',
+        component: () => import('../views/auth/logout.vue'),
+        meta: { header: false } // 로그인 페이지에선 헤더 제거
       },
       {
         path: '/auth/join',
         component: () => import('../views/auth/join.vue')
+      }
+    ]
+  },
+  {
+    path: '/mypage',
+    component: () => import('../views/auth'),
+    children: [
+      {
+        path: '/mypage',
+        component: () => import('../views/mypage')
       },
       {
-        path: '/sub/mypage',
-        component: () => import('../views/sub/mypage.vue')
+        path: '/mypage/inform',
+        component: () => import('../views/mypage/inform.vue')
       }
     ]
   },

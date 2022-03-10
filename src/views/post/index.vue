@@ -84,7 +84,7 @@ export default {
   watch: {
     insertedResult(value) {
       // 등록 후 처리
-
+      console.log('insertedResult', value)
       if (value !== null) {
         if (value > 0) {
           // 등록이 성공한 경우

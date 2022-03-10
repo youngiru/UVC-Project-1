@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     onRowSelected() {
-      this.$router.push('/sub/study-detail')
+      this.$router.push('/sub/study/study-detail')
     }
   }
 }

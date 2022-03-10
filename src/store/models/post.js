@@ -1,4 +1,5 @@
 import api from '../apiUtil'
+import axios from 'axios'
 
 // 초기값 선언
 const stateInit = {
@@ -59,6 +60,7 @@ export default {
       api
         .get('/serverApi/posts', { params: payload })
         .then(response => {
+          console.log('list', response)
           const postList = response && response.data && response.data.rows
           context.commit('setPostList', postList)
         })
@@ -72,10 +74,10 @@ export default {
     actPostInsert(context, payload) {
       // 상태값 초기화
       context.commit('setInsertedResult', null)
-
+      console.log('post', payload)
       /* RestAPI 호출 */
-      api
-        .post('/serverApi/posts', payload)
+      axios
+        .post(`/serverApi/posts`, payload)
         .then(response => {
           // 정상 등록인 경우 처리
           const insertedResult = response && response.data && response.data.id
@@ -87,6 +89,7 @@ export default {
           context.commit('setInsertedResult', -1)
         })
     },
+
     // 정보 초기화
     actPostInit(context, payload) {
       context.commit('setPost', { ...stateInit.Post })
@@ -101,9 +104,10 @@ export default {
       context.commit('setPost', { ...stateInit.Post })
 
       /* RestAPI 호출 */
-      api
+      axios
         .get(`/serverApi/posts/${payload}`)
         .then(response => {
+          console.log('ddd', response)
           const post = response && response.data
           context.commit('setPost', post)
         })

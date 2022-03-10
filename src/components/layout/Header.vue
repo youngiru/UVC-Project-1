@@ -4,7 +4,7 @@
       <ul class="header_u">
         <li><router-link to="/auth/login" class="color_000">로그인</router-link></li>
         <li><router-link to="/auth/join" class="color_000">회원가입</router-link></li>
-        <li><router-link to="/sub/mypage" class="color_000">마이페이지</router-link></li>
+        <li><router-link to="/mypage" class="color_000">마이페이지</router-link></li>
       </ul>
     </div>
     <h1>
@@ -23,5 +23,26 @@
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    isLoggedin() {
+      // let login = false
+      // if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+      //   login = true
+      // }
+
+      // return login
+      // 테스트 return true
+      return true
+    },
+    tokenUserName() {
+      return this.$store.getters.TokenUser && this.$store.getters.TokenUser.name
+    }
+  },
+  methods: {
+    onClick(path) {
+      this.$router.push(path)
+    }
+  }
+}
 </script>

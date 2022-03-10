@@ -129,7 +129,7 @@ export default {
   },
   methods: {
     onRowSelected() {
-      this.$router.push('/sub/competition-detail-2')
+      this.$router.push('/sub/competition/competition-detail-2')
     }
   }
 }
