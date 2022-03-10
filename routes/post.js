@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const logger = require('../lib/logger');
 const postService = require('../service/postService');
+const commentService = require('../service/commentService');
 
 // 등록
 router.post('/', async (req, res) => {
@@ -39,7 +40,8 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const params = {
-      userId: req.query.userId,
+      boardId: req.query.boardId,
+      // userId: req.query.userId,
       categoryId: req.query.categoryId,
       title: req.query.title,
       content: req.query.content,
@@ -79,6 +81,7 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const params = {
+      id: req.params.id,
       userId: req.body.userId,
       categoryId: req.body.categoryId,
       title: req.body.title,
@@ -107,6 +110,35 @@ router.delete('/:id', async (req, res) => {
 
     const result = await postService.delete(params);
     logger.info(`(post.delete.result) ${JSON.stringify(result)}`);
+
+    // 최종 응답
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(500).json({ err: err.toString() });
+  }
+});
+
+// 댓글 등록
+router.post('/:id', async (req, res) => {
+  try {
+    const params = {
+      postId: req.params.id,
+      userId: req.body.userId,
+      content: req.body.content,
+    };
+    logger.info(`(comment.reg.params) ${JSON.stringify(params)}`);
+
+    // 입력값 null 체크
+    if (!params.content) {
+      const err = new Error('Not allowed null (content)');
+      logger.error(err.toString());
+
+      return res.status(500).json({ err: err.toString() });
+    }
+
+    // 비즈니스 로직 호출
+    const result = await commentService.reg(params);
+    logger.info(`(comment.reg.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
     return res.status(200).json(result);
