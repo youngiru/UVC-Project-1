@@ -10,7 +10,7 @@ const service = {
       inserted = await teamcommentDao.insert(params);
       logger.debug(`(teamcommentService.reg) ${JSON.stringify(inserted)}`);
     } catch (err) {
-      logger.error(`(teamcomment.reg) ${err.toString()}`);
+      logger.error(`(teamcommentService.reg) ${err.toString()}`);
       return new Promise((resolve, reject) => {
         reject(err);
       });

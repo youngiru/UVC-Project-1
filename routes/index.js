@@ -7,7 +7,7 @@ const userRouter = require('./user');
 const authRouter = require('./auth');
 const hashtagRouter = require('./hashtag');
 const teamRouter = require('./team');
-const teamcommentRouter = require('./teamcomment');
+// const teamcommentRouter = require('./teamcomment');
 const uploadRouter = require('./upload');
 const mypageRouter = require('./mypage')
 
@@ -37,7 +37,7 @@ router.use('/users', userRouter);
 router.use('/auths', authRouter);
 router.use('/hashtags', hashtagRouter);
 router.use('/teams', teamRouter);
-router.use('./teamcomments', teamcommentRouter);
+// router.use('./teamcomments', teamcommentRouter);
 router.use('/upload', uploadRouter);
 router.use('/mypage', mypageRouter);
 

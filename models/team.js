@@ -16,6 +16,9 @@ module.exports = class Team extends Sequelize.Model {
       content: {
         type: Sequelize.TEXT,
       },
+      tag: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
+      },
     }, {
       sequelize,
       underscored: true,

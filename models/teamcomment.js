@@ -10,7 +10,7 @@ module.exports = class Teamcomment extends Sequelize.Model {
         type: Sequelize.INTEGER,
       },
       content: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING(255),
         allowNull: false,
       },
     }, {

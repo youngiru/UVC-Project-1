@@ -12,26 +12,14 @@ const dao = {
       });
     });
   },
-  // 게시글 전체 조회, 검색
+  // 리스트 조회
   selectList(params) {
     // where 검색 조건
     const setQuery = {};
-    if (params.title) {
+    if (params.userId) {
       setQuery.where = {
         ...setQuery.where,
-        title: { [Op.like]: `%${params.title}%` }, // like검색
-      };
-    }
-    if (params.tag) {
-      setQuery.where = {
-        ...setQuery.where,
-        tag: { [Op.like]: `%${params.tag}%` }, // like검색
-      };
-    }
-    if (params.categoryId) {
-      setQuery.where = {
-        ...setQuery.where,
-        categoryId: params.categoryId,
+        userId: params.userId,
       };
     }
 
@@ -54,13 +42,6 @@ const dao = {
     return new Promise((resolve, reject) => {
       Teamcomment.findByPk(
         params.id,
-        {
-          include: [
-            {
-              model: Teamcomment,
-            },
-          ],
-        },
       ).then((selectedInfo) => {
         resolve(selectedInfo);
       }).catch((err) => {

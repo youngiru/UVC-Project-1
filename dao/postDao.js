@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Post, Comment,Category, Board, User  } = require('../models/index');
+const { Post, Comment, Category, Board, User } = require('../models/index');
 
 const dao = {
   // 등록

@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Team, Teamcomment } = require('../models/index');
+const { Team, Teamcomment, Post, User } = require('../models/index');
 
 const dao = {
   // 등록
@@ -14,7 +14,7 @@ const dao = {
   },
   // 게시글 전체 조회, 검색
   selectList(params) {
-    // where 검색 조건
+    // where 검색 조건 (팀원모집 글 전체검색)
     const setQuery = {};
     if (params.title) {
       setQuery.where = {
@@ -28,10 +28,12 @@ const dao = {
         tag: { [Op.like]: `%${params.tag}%` }, // like검색
       };
     }
-    if (params.categoryId) {
+
+    // postId 검색 (해당 공모전/대외활동의 팀원모집 글만 보기)
+    if (params.postId) {
       setQuery.where = {
         ...setQuery.where,
-        categoryId: params.categoryId,
+        postId: params.postId,
       };
     }
 
@@ -41,6 +43,12 @@ const dao = {
     return new Promise((resolve, reject) => {
       Team.findAndCountAll({
         ...setQuery,
+        include: [
+          {
+            model: User,
+            attributes:['id', 'nickname'],
+          }
+        ]
       }).then((selectedList) => {
         resolve(selectedList);
       }).catch((err) => {
@@ -58,6 +66,11 @@ const dao = {
           include: [
             {
               model: Teamcomment,
+              attributes: ['id', 'userId', 'content'],
+              include: {
+                model: User,
+                attributes: ['nickname']
+              }
             },
           ],
         },
