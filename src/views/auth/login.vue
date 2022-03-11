@@ -1,19 +1,39 @@
 <template>
   <div>
     <div id="login_wrap">
-      <h3>로그인</h3>
-      <div>
-        <b-form @submit.stop.prevent>
-          <b-form-input id="input-id" v-model="userid" type="text" aria-describedby="id-help-block"></b-form-input>
-          <b-form-input
-            id="input-password"
-            v-model="password"
-            type="password"
-            aria-describedby="password-help-block"
-          ></b-form-input>
-        </b-form>
+      <div class="login_formbox">
+        <b-container fluid>
+          <b-form @submit.stop.prevent>
+            <b-row align-h="center" class="login_id login_box">
+              <b-col sm="7">
+                <b-form-input
+                  id="login_input"
+                  v-model="userid"
+                  type="text"
+                  placeholder="모여 아이디"
+                  aria-describedby="id-help-block"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row align-h="center" class="login_pw login_box">
+              <b-col sm="7">
+                <b-form-input
+                  id="input-password"
+                  v-model="password"
+                  type="password"
+                  placeholder="비밀번호"
+                  aria-describedby="password-help-block"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+          </b-form>
+        </b-container>
       </div>
-      <button :disabled="loading" @click="onSubmit"><b-spinner v-if="loading" small></b-spinner>로그인</button>
+      <div class="login_btnbox">
+        <b-button variant="outline-warning" :disabled="loading" class="login_btn" @click="onSubmit"
+          ><b-spinner v-if="loading" small></b-spinner>로그인</b-button
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -82,4 +102,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style src="@/sass/main.css"></style>

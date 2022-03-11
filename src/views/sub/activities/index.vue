@@ -15,7 +15,7 @@
         </b-button>
       </div>
     </div>
-    <div class="mt-3 activities-kategorie">
+    <div class="mt-3 activities-kategorie ketegorie">
       <b-button-group>
         <b-button variant="outline-warning" class="activities-kategorie-btn">카테고리</b-button>
         <b-button variant="outline-warning" class="activities-kategorie-btn">카테고리</b-button>
@@ -24,7 +24,7 @@
         <b-button variant="outline-warning" class="activities-kategorie-btn">카테고리</b-button>
       </b-button-group>
     </div>
-    <div class="activities-main">
+    <div class="activities-main activitiesMain">
       <b-row v-for="n in 1" :key="n">
         <b-col v-for="k in member.length" :key="k" cols="12" md="3" style="margin-bottom: 20px">
           <b-card @click="$router.push('/sub/activities/activities-detail')">

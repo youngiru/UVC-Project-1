@@ -190,6 +190,26 @@ a {
   width: 100%;
 }
 
+#login_wrap {
+  width: 1280px;
+  margin: 70px;
+}
+
+#login_wrap .login_input {
+  width: 50%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 70px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
 #join_wrap {
   width: 1280px;
   margin: 0 auto 70px;
@@ -272,6 +292,35 @@ a {
   width: 11%;
   font-size: 22px;
   font-weight: bold;
+}
+
+#login_wrap {
+  width: 1280px;
+  margin: 0 auto;
+  height: 39.6vh;
+}
+
+#login_wrap .login_formbox {
+  margin-top: 185px;
+}
+
+#login_wrap .login_formbox .login_id {
+  margin: 50px 0 30px;
+}
+
+#login_wrap .login_formbox .login_pw {
+  margin: 0;
+}
+
+#login_wrap .login_btnbox {
+  margin: 70px 0;
+}
+
+#login_wrap .login_btnbox .login_btn {
+  display: block;
+  margin: 0 auto;
+  width: 10%;
+  line-height: 2;
 }
 
 #activities_wrap {
@@ -947,6 +996,13 @@ a {
   color: #333;
   letter-spacing: 5px;
   margin-bottom: 30px;
+}
+
+#study_wrap .study-detail-team-btn {
+  background-color: #f5b145;
+  color: #3d4b60;
+  border: 0;
+  font-weight: bold;
 }
 
 #study-detail_wrap {

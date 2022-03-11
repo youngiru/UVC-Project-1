@@ -85,13 +85,6 @@
                   @click="onClickEdit(row.item.id)"
                   >수정</b-button
                 >
-                <b-button
-                  v-if="isMyContent(row.item.userId)"
-                  size="sm"
-                  variant="success"
-                  @click="onClickEdit(row.item.id)"
-                  >수정</b-button
-                >
                 <b-button v-else size="sm" variant="info" @click="onClickEdit(row.item.id)">보기</b-button>
               </template>
               <template #cell(deleteBtn)="row">
@@ -278,12 +271,11 @@ export default {
     },
     isMyContent(userId) {
       // 해당 컨텐츠의 작성자 일치 여부
-      // if (userId === this.$store.getters.TokenUser.id) {
-      //   return true
-      // } else {
-      //   return false
-      // }
-      return true
+      if (userId === this.$store.getters.TokenUser.id) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }

@@ -10,12 +10,7 @@
           </tr>
           <tr>
             <th>내용</th>
-            <td>
-              집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에
-              보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘
-              집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에
-              보내줘 집에 보내줘 집에 보내줘 집에 보내줘 집에 보내줘
-            </td>
+            <td>공모전에 함께 나갈 팀원을 모집합니다.</td>
           </tr>
         </table>
       </form>
@@ -32,7 +27,7 @@
       <button>완료</button>
     </div>
     <div class="competition2-btn">
-      <button><router-link to="/sub/competition-detail" class="color_000">이전</router-link></button>
+      <button><router-link to="/sub/competition/competition-detail" class="color_000">이전</router-link></button>
     </div>
   </div>
 </template>

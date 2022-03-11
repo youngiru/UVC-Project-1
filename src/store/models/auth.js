@@ -10,11 +10,10 @@ import jwtDecode from 'jwt-decode'
   "iat": 1627339022,
   "exp": 2000000000
 }
-
+*/
 
 const testToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYW1lIjoiS2ltIiwibmlja25hbWUiOiJraW0iLCJpYXQiOjE2MjczMzkwMjIsImV4cCI6MjAwMDAwMDAwMH0.d0N7Cj4nMqjUX4DGNcvziX50LwVMQhXqY3iGDOw5Rgc'
-*/
 
 const stateInit = {
   TokenUser: {
@@ -69,7 +68,6 @@ export default {
       context.commit('setLoading', true)
 
       /* 테스트 데이터 세팅 */
-      /*
       setTimeout(() => {
         const token = testToken
         const decodedToken = jwtDecode(token)
@@ -80,15 +78,15 @@ export default {
         context.commit('setLoading', false)
         context.commit('setTokenUser', decodedToken)
       }, 2000) // 처리 시간을 2초로 주었다.
-      */
 
       /* RestApi 호출 */
+      /*
       api
-        .post('/serverApi/auths/token', payload)
+        .post('/auths/token', payload)
         .then(response => {
           const token = response.headers.token
           const decodedToken = jwtDecode(token)
-
+          console.log('token', decodedToken)
           // 정상인 경우 처리
           context.commit('setLoading', false)
           context.commit('setTokenUser', decodedToken)
@@ -98,6 +96,7 @@ export default {
           context.commit('setLoading', false)
           context.commit('setError', error)
         })
+      */
     },
     async authLogout(context) {
       // 로그아웃 처리
@@ -125,6 +124,11 @@ export default {
         context.commit('setLogout') // 로그아웃 처리
         window.localStorage.removeItem('token') // 토큰 삭제
       }
+    },
+    authTokenUser(context, payload) {
+      // 토큰사용자 설정
+      const decodedToken = jwtDecode(payload)
+      context.commit('setTokenUser', decodedToken)
     }
   }
 }

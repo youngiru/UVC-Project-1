@@ -58,7 +58,7 @@ export default {
     actPostList(context, payload) {
       /* RestAPI 호출 */
       api
-        .get('/serverApi/posts', { params: payload })
+        .get('/posts', { params: payload })
         .then(response => {
           console.log('list', response)
           const postList = response && response.data && response.data.rows
@@ -77,7 +77,7 @@ export default {
       console.log('post', payload)
       /* RestAPI 호출 */
       axios
-        .post(`/serverApi/posts`, payload)
+        .post(`/posts`, payload)
         .then(response => {
           // 정상 등록인 경우 처리
           const insertedResult = response && response.data && response.data.id

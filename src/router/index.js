@@ -33,6 +33,10 @@ const routes = [
             component: () => import('../views/sub/activities/activities-detail.vue')
           },
           {
+            path: '/sub/activities/activities-detail-2',
+            component: () => import('../views/sub/activities/activities-detail-2.vue')
+          },
+          {
             path: '/sub/competition',
             component: () => import('../views/sub/competition')
           },

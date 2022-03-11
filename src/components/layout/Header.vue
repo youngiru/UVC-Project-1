@@ -2,9 +2,12 @@
   <div id="header">
     <div class="header_u_af">
       <ul class="header_u">
-        <li><router-link to="/auth/login" class="color_000">로그인</router-link></li>
-        <li><router-link to="/auth/join" class="color_000">회원가입</router-link></li>
-        <li><router-link to="/mypage" class="color_000">마이페이지</router-link></li>
+        <li>
+          <router-link to="/auth/logout" class="color_000">{{ getLogin }}</router-link>
+        </li>
+        <li>
+          <router-link to="/auth/logout" class="color_000">{{ getUtil }}</router-link>
+        </li>
       </ul>
     </div>
     <h1>
@@ -25,23 +28,28 @@
 <script>
 export default {
   computed: {
-    isLoggedin() {
-      // let login = false
-      // if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
-      //   login = true
-      // }
-
-      // return login
-      // 테스트 return true
-      return true
-    },
     tokenUserName() {
       return this.$store.getters.TokenUser && this.$store.getters.TokenUser.name
-    }
-  },
-  methods: {
-    onClick(path) {
-      this.$router.push(path)
+    },
+    getLogin() {
+      let log = ''
+      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+        log = '로그아웃'
+      } else {
+        log = '로그인'
+      }
+
+      return log
+    },
+    getUtil() {
+      let text = ''
+      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+        text = '마이페이지'
+      } else {
+        text = '회원가입'
+      }
+
+      return text
     }
   }
 }

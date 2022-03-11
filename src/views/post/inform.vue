@@ -19,14 +19,16 @@
             v-model="post.content"
             :disabled="inputMode === 'update' && post.userId !== this.$store.getters.TokenUser.id"
           ></b-form-input> -->
-          <div className="HashWrap">
-            <input
-              type="text"
-              value="{hashtag}"
-              onChange="{onChangeHashtag}"
-              onKeyUp="{onKeyUp}"
-              placeholder="해시태그 입력"
-            />
+          <div id="hash_wrap">
+            <label for="tag"></label>
+            <b-form-tags
+              v-model="post.tag"
+              input-id="tag"
+              placeholder="태그할 지역을 입력하세요."
+              remove-on-delete
+              tag-pills
+              tag-variant="warning"
+            ></b-form-tags>
           </div>
 
           <!-- 글 등록 모드 -->
@@ -60,32 +62,6 @@ import api from '../../store/apiUtil'
 // Toast UI Editor 모듈 추가
 import '@toast-ui/editor/dist/toastui-editor.css'
 import { Editor, Viewer } from '@toast-ui/vue-editor'
-import SelectBox from '@toast-ui/select-box'
-
-// const selectBox = new SelectBox('#select-box', {
-//   placeholder: 'Please select an option.',
-//   data: [
-//     {
-//       label: 'Fruits',
-//       data: [
-//         { label: 'Apple', value: 'apple' },
-//         { label: 'Banana', value: 'banana' }
-//       ]
-//     },
-//     { label: 'The quick brown fox jumps over the lazy dog.', value: 'none' },
-//     {
-//       label: 'Colors',
-//       data: [
-//         { label: 'Red', value: 'red' },
-//         { label: 'Yellow', value: 'yellow' },
-//         { label: 'Green', value: 'green', disabled: true },
-//         { label: 'Blue', value: 'blue', disabled: true },
-//         { label: 'Purple', value: 'purple' }
-//       ]
-//     }
-//   ],
-//   autofocus: true
-// })
 
 export default {
   components: {

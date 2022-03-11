@@ -32,7 +32,7 @@
       <button>완료</button>
     </div>
     <div class="detail2-btn">
-      <button><router-link to="/sub/activities-detail" class="color_000">이전</router-link></button>
+      <button><router-link to="/sub/activities/activities-detail-2" class="color_000">이전</router-link></button>
     </div>
   </div>
 </template>

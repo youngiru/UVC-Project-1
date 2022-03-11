@@ -2,14 +2,14 @@
   <div>
     <b-modal id="modal-mypage-inform" :title="getTitle" @ok="onSubmit">
       <div>
-        <b-form-group label="id" label-for="code" label-cols="3">
-          <b-form-input id="id" v-model="mypage.id"></b-form-input>
-        </b-form-group>
         <b-form-group label="이름" label-for="name" label-cols="3">
-          <b-form-input id="name" v-model="mypage.name"></b-form-input>
+          <b-form-input id="name" v-model="mypage.name" disabled></b-form-input>
         </b-form-group>
         <b-form-group label="아이디" label-for="mypageid" label-cols="3">
-          <b-form-input id="mypageid" v-model="mypage.mypageid"></b-form-input>
+          <b-form-input id="mypageid" v-model="mypage.mypageid" disabled></b-form-input>
+        </b-form-group>
+        <b-form-group label="닉네임" label-for="mypageNicName" label-cols="3">
+          <b-form-input id="mypageNicName" v-model="mypage.mypageNicName"></b-form-input>
         </b-form-group>
         <b-form-group label="비밀번호" label-for="password" label-cols="3">
           <b-form-input id="password" v-model="mypage.password" type="password"></b-form-input>
@@ -33,9 +33,9 @@ export default {
   data() {
     return {
       mypage: {
-        id: null,
         name: null,
         mypageid: null,
+        mypageNicName: null,
         password: null,
         email: null,
         phone: null,
