@@ -34,7 +34,13 @@ const dao = {
     if (params.categoryId) {
       setCategoryQuery.where = {
         ...setCategoryQuery.where,
-        categoryId: params.categoryId,
+        id: params.categoryId,
+      };
+    }
+    if (!params.categoryId) {
+      setCategoryQuery.where = {
+        ...setCategoryQuery.where,
+        boardId: params.boardId,
       };
     }
 
@@ -47,7 +53,7 @@ const dao = {
         include:[
           {
             model: Category,
-            attributes:['id', 'name'], 
+            attributes:['id', 'name', 'boardId'], 
             ...setCategoryQuery,
             include: [
               {

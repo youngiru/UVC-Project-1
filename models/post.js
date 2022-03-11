@@ -17,7 +17,7 @@ module.exports = class Post extends Sequelize.Model {
         type: Sequelize.TEXT,
       },
       tag: {
-        type: Sequelize.STRING(255),
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
     }, {
       sequelize,

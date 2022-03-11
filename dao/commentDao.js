@@ -15,6 +15,7 @@ const dao = {
   // 리스트 조회
   selectList(params) {
     // where 검색 조건
+    const setQuery = {};
     if (params.userId) {
       setQuery.where = {
         ...setQuery.where,
