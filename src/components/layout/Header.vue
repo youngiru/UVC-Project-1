@@ -5,9 +5,7 @@
         <li>
           <router-link to="/auth/logout" class="color_000">{{ getLogin }}</router-link>
         </li>
-        <li>
-          <router-link to="/auth/logout" class="color_000">{{ getUtil }}</router-link>
-        </li>
+        <li class="util_btn" @click="onRowUtil">{{ getUtil }}</li>
       </ul>
     </div>
     <h1>
@@ -50,6 +48,15 @@ export default {
       }
 
       return text
+    }
+  },
+  methods: {
+    onRowUtil() {
+      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+        this.$router.push('/mypage')
+      } else {
+        this.$router.push('/auth/join-2')
+      }
     }
   }
 }

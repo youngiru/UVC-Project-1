@@ -85,12 +85,16 @@ const routes = [
       {
         path: '/auth/join',
         component: () => import('../views/auth/join.vue')
+      },
+      {
+        path: '/auth/join-2',
+        component: () => import('../views/auth/join-2.vue')
       }
     ]
   },
   {
     path: '/mypage',
-    component: () => import('../views/auth'),
+    component: () => import('../views/mypage'),
     children: [
       {
         path: '/mypage',

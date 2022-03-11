@@ -64,6 +64,9 @@ a{
           margin-right: 0;
         }
       }
+      .util_btn{
+        cursor: pointer;
+      }
     }
   }
   h1{
@@ -242,6 +245,106 @@ a{
   }
 }
 // join
+
+//join_02
+#join-2_wrap{
+  width: 100%;
+  .join_container{
+    width: $wi;
+    margin: $mr;
+    >p{
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 2;
+      color: #333;
+      border-bottom: solid 1px #000;
+      padding-bottom: 10px;
+      box-sizing: border-box;
+    }
+    .join_check_box{
+      margin-top: 50px;
+      #join_all_check{}
+      #join_all_check_02{}
+      #join_all_check_03{}
+
+      #join_all_check,
+      #join_all_check_02,
+      #join_all_check_03{
+        display: inline-block;
+      }
+      >label{
+        display: inline-block;
+        text-indent: 5px;
+        font-size: 1.2rem;
+        line-height: 1.2;
+        color: #333;
+        .join_text_bgccc{
+          color: #333;
+        }
+        .join_text_bold{
+          font-weight: 700;
+        }
+        >a{
+          font-size: 1rem;
+          color: #000;
+          border-bottom: solid 1px #333;
+        }
+        .join_text_bgccc,
+        .join_text_bold,
+        >a{
+          display: inline-block;
+        }
+      }
+      .join_text_01{
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 190px;
+        margin: 10px 0 0;
+        padding: 20px;
+        border: 1px solid #333;
+        border-top: 1px solid #333;
+        line-height: 3;
+        font-size: 0.9rem;
+        color: #333;
+      }
+      .join_text_02{
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 190px;
+        margin: 10px 0 0;
+        padding: 20px;
+        border: 1px solid #333;
+        border-top: 1px solid #333;
+        line-height: 3;
+        font-size: 0.9rem;
+        color: #333;
+      }
+    }
+    .join-2-btn{
+      display: block;
+      margin: 30px auto 0;
+      border: 0;
+      background-color: $f5;
+      line-height: 2.2;
+      width: 11%;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 70px;
+      > a{
+        display: block;
+        color: $d4;
+      }
+      &:hover{
+        background-color: #e9be7a;
+      }
+      &:hover a{
+        text-decoration: none;
+        color: #1d2634;
+      }
+    }
+  }
+}
+//join_02
 
 // login
 #login_wrap{
