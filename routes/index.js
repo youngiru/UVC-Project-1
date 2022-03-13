@@ -9,7 +9,8 @@ const hashtagRouter = require('./hashtag');
 const teamRouter = require('./team');
 // const teamcommentRouter = require('./teamcomment');
 const uploadRouter = require('./upload');
-const mypageRouter = require('./mypage')
+const mypageRouter = require('./mypage');
+const imageRouter = require('./image');
 
 const router = express.Router();
 
@@ -40,5 +41,6 @@ router.use('/teams', teamRouter);
 // router.use('./teamcomments', teamcommentRouter);
 router.use('/upload', uploadRouter);
 router.use('/mypage', mypageRouter);
+router.use('/images', imageRouter);
 
 module.exports = router;

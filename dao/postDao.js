@@ -1,5 +1,7 @@
 const { Op } = require('sequelize');
-const { Post, Comment, Category, Board, User } = require('../models/index');
+const {
+  Post, Comment, Category, Board, User, Team,
+} = require('../models/index');
 
 const dao = {
   // 등록
@@ -30,7 +32,7 @@ const dao = {
     }
 
     // categoryId 검색
-    const setCategoryQuery = {}
+    const setCategoryQuery = {};
     if (params.categoryId) {
       setCategoryQuery.where = {
         ...setCategoryQuery.where,
@@ -50,20 +52,20 @@ const dao = {
     return new Promise((resolve, reject) => {
       Post.findAndCountAll({
         ...setQuery,
-        include:[
+        include: [
           {
             model: Category,
-            attributes:['id', 'name', 'boardId'], 
+            attributes: ['id', 'name', 'boardId'],
             ...setCategoryQuery,
             include: [
               {
                 model: Board,
-                attributes:['id', 'name'],
-                where: {id: params.boardId}
+                attributes: ['id', 'name'],
+                where: { id: params.boardId },
               },
-            ]
-          }
-        ]
+            ],
+          },
+        ],
       }).then((selectedList) => {
         resolve(selectedList);
       }).catch((err) => {
@@ -84,8 +86,15 @@ const dao = {
               attributes: ['id', 'userId', 'content'],
               include: {
                 model: User,
-                attributes: ['nickname']
-              }
+                attributes: ['nickname'],
+              },
+            },
+            {
+              model: Team,
+              as: 'Teams',
+              attributes: ['id', 'postId', 'title', 'content'],
+              include: [
+              ],
             },
           ],
         },

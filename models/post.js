@@ -36,5 +36,6 @@ module.exports = class Post extends Sequelize.Model {
     db.Post.belongsToMany(db.Hashtag, { through: 'posthashtag' }, { onDelete: 'CASCADE' });
     db.Post.belongsToMany(db.User, { through: 'bookmark' }, { onDelete: 'CASCADE' });
     db.Post.hasMany(db.Team, { foreignKey: 'postId', sourceKey: 'id' });
+    db.Post.hasMany(db.Image, { foreignKey: 'postId', sourceKey: 'id' });
   }
 };
