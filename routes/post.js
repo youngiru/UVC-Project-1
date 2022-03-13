@@ -40,7 +40,8 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const params = {
-      // boardId: req.query.boardId,
+      boardId: req.query.boardId,
+      // id: req.query.id,
       userId: req.query.userId,
       categoryId: req.query.categoryId,
       title: req.query.title,
