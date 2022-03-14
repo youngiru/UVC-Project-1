@@ -65,6 +65,10 @@ const dao = {
               },
             ],
           },
+          {
+            model: User,
+          attributes: ['id', 'nickname']
+        },
         ],
       }).then((selectedList) => {
         resolve(selectedList);
