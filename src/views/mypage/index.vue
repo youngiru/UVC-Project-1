@@ -11,16 +11,16 @@
           <b-col cols="9" class="mypage_textbox">
             <div class="mypage_information">
               <span class="mypage_inform_text">이름</span>
-              <span>홍길동</span>
+              <span>{{ Mypage.name }}</span>
               <br />
               <span class="mypage_inform_text">닉네임</span>
-              <span>사람</span>
+              <span>{{ Mypage.nickname }}</span>
               <br />
               <span class="mypage_inform_text">email</span>
-              <span>example@email.com</span>
+              <span>{{ Mypage.email }}</span>
               <br />
               <span class="mypage_inform_text">전화번호</span>
-              <span>010-0000-0000</span>
+              <span>{{ Mypage.phone }}</span>
             </div>
           </b-col>
         </b-row>
@@ -43,7 +43,20 @@ export default {
     inform: inform
   },
   data() {
-    return {}
+    return {
+      Mypage: {
+        id: null,
+        name: null,
+        nickname: null,
+        userid: null,
+        password: null,
+        email: null,
+        phone: null,
+        updatedPwDate: null,
+        createdAt: null,
+        updatedAt: null
+      }
+    }
   },
   computed: {
     MypageList() {

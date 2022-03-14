@@ -3,9 +3,10 @@
     <div class="header_u_af">
       <ul class="header_u">
         <li>
-          <router-link to="/auth/logout" class="color_000">{{ getLogin }}</router-link>
+          <router-link to="/auth/login" class="color_000">{{ getLogin }}</router-link>
         </li>
         <li class="util_btn" @click="onRowUtil">{{ getUtil }}</li>
+        <li class="util_btn"><router-link to="/mypage">마이페이지</router-link></li>
       </ul>
     </div>
     <h1>
@@ -26,6 +27,14 @@
 <script>
 export default {
   computed: {
+    isLoggedin() {
+      let login = false
+      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+        login = true
+      }
+
+      return login
+    },
     tokenUserName() {
       return this.$store.getters.TokenUser && this.$store.getters.TokenUser.name
     },

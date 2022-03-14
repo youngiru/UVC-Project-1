@@ -6,7 +6,7 @@
       </div>
       <div class="foo_text_box">
         <ul class="foo_u">
-          <li>이용약관</li>
+          <li><router-link to="/sub/service" class="color_000">이용약관</router-link></li>
           <li>개인정보취급방침</li>
           <li>이용안내</li>
         </ul>

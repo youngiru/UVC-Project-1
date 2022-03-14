@@ -31,13 +31,13 @@ api.interceptors.response.use(
   }
 )
 
-const instance = axios.create({
-  baseURL: 'http://localhost:8081'
-})
+// const instance = axios.create({
+//   baseURL: 'http://localhost:8081'
+// })
 
-function joinUser(userData) {
-  return instance.post('signup', userData)
-}
+// function joinUser(userData) {
+//   return instance.post('signup', userData)
+// }
 
 export default api
-export { joinUser }
+// export { joinUser }

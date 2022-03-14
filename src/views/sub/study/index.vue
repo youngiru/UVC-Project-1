@@ -2,18 +2,18 @@
   <div id="study_wrap">
     <h3>스터디</h3>
     <div>
-      <b-button class="study-detail-team-btn" @click="onClickAddNew">팀원 모집 글쓰기</b-button>
+      <b-button class="activities-detail-team-btn" @click="onClickAddNew">팀원 모집 글쓰기</b-button>
       <div>
         <b-table small hover striped :items="postList" :fields="studyFields" style="margin-bottom: 70px">
-          <!-- <template #cell(id)="row">
+          <template #cell(nickName)="row">
             {{ row.item.id && row.item.User.nickname }}
           </template>
-          <template #cell(Category)="row">
+          <template #cell(name)="row">
             {{ row.item.Category && row.item.Category.name }}
           </template>
           <template #cell(createdAt)="row">
             {{ row.item.createdAt.substring(0, 10) }}
-          </template> -->
+          </template>
           <template #cell(updateBtn)="row">
             <!-- 본인 컨텐츠만 수정 가능 -->
             <b-button v-if="isMyContent(row.item.userId)" size="sm" variant="success" @click="onClickEdit(row.item.id)"
@@ -34,7 +34,7 @@
       striped
       hover
       :items="study_data"
-      :fields="study"
+      :fields="studyFields"
       style="margin-bottom: 70px"
       selectable
       @row-selected="onRowSelected"
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import inform from '../../post/inform.vue'
+import inform from './inform.vue'
 
 export default {
   components: {
@@ -53,32 +53,32 @@ export default {
   },
   data() {
     return {
-      // studyFields: [
-      //   {
-      //     key: 'id',
-      //     label: '번호'
-      //   },
-      //   {
-      //     key: 'name',
-      //     label: '작성자'
-      //   },
-      //   {
-      //     key: 'title',
-      //     label: '제목'
-      //   }
-      // ],
+      studyFields: [
+        {
+          key: 'id',
+          label: '번호'
+        },
+        {
+          key: 'nickName',
+          label: '작성자'
+        },
+        {
+          key: 'title',
+          label: '제목'
+        }
+      ],
       // 테스트 데이터
       study_data: [
-        { 번호: 1, 작성자: '김영일', 제목: '스터디' },
-        { 번호: 2, 작성자: '이학수', 제목: '스터디 모집' },
-        { 번호: 3, 작성자: '윤희영', 제목: '스터디 같이 해요' },
-        { 번호: 4, 작성자: '김경은', 제목: '스터디 모집합니다' },
-        { 번호: 5, 작성자: '이주현', 제목: '스터디' },
-        { 번호: 6, 작성자: '진정우', 제목: '모집' },
-        { 번호: 7, 작성자: '이다운', 제목: '같이해요' },
-        { 번호: 8, 작성자: '유지영', 제목: '스터디 할 사람' },
-        { 번호: 9, 작성자: '최송이', 제목: '스터디 모집' },
-        { 번호: 10, 작성자: '박정혜', 제목: '스터디 같이 해주세요' }
+        { id: 1, nickName: '김영일', title: '스터디' },
+        { id: 2, nickName: '이학수', title: '스터디 모집' },
+        { id: 3, nickName: '윤희영', title: '스터디 같이 해요' },
+        { id: 4, nickName: '김경은', title: '스터디 모집합니다' },
+        { id: 5, nickName: '이주현', title: '스터디' },
+        { id: 6, nickName: '진정우', title: '모집' },
+        { id: 7, nickName: '이다운', title: '같이해요' },
+        { id: 8, nickName: '유지영', title: '스터디 할 사람' },
+        { id: 9, nickName: '최송이', title: '스터디 모집' },
+        { id: 10, nickName: '박정혜', title: '스터디 같이 해주세요' }
       ]
     }
   },
@@ -104,11 +104,12 @@ export default {
           // 등록이 성공한 경우
 
           // 1. 메시지 출력
-          this.$byToast.toast('등록되었습니다.', {
-            title: 'SUCCESS',
-            variant: 'success',
-            solid: true
-          })
+          // this.$byToast.toast('등록되었습니다.', {
+          //   title: 'SUCCESS',
+          //   variant: 'success',
+          //   solid: true
+          // })
+          alert('등록되었습니다!')
 
           // 2. 리스트 재검색
           this.searchPostList()
@@ -177,16 +178,16 @@ export default {
       this.$router.push('/sub/study/study-detail')
     },
     searchPostList() {
-      this.$store.dispatch('actPostList', this.search)
+      this.$store.dispatch('actStudyList', this.search)
     },
     onClickAddNew() {
       // 신규등록
 
       // 1. 입력모드 설정
-      this.$store.dispatch('actPostInputMode', 'insert')
+      this.$store.dispatch('actStudyInputMode', 'insert')
 
       // 2. 상세정보 초기화
-      this.$store.dispatch('actPostInit')
+      this.$store.dispatch('actStudyInit')
 
       // 3. 모달 출력
       // this.$byModal.show('modal-post-inform')
@@ -196,10 +197,10 @@ export default {
       // (수정을 위한) 상세정보
 
       // 1. 입력모드 설정
-      this.$store.dispatch('actPostInputMode', 'update')
+      this.$store.dispatch('actStudyInputMode', 'update')
 
       // 2. 상세정보 초기화
-      this.$store.dispatch('actPostInit', id)
+      this.$store.dispatch('actStudyInit', id)
 
       // 3. 모달 출력
       // this.$byModal.show('modal-post-inform')
@@ -209,7 +210,7 @@ export default {
       // 삭제
       this.$byModal.msgBoxConfirm('삭제하시겠습니까?').then(value => {
         if (value) {
-          this.$store.dispatch('actPostDelete', id)
+          this.$store.dispatch('actStudyDelete', id)
         }
       })
     },

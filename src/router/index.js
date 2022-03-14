@@ -63,6 +63,10 @@ const routes = [
           {
             path: '/sub/study/study-detail',
             component: () => import('../views/sub/study/study-detail.vue')
+          },
+          {
+            path: '/sub/service',
+            component: () => import('../views/sub/service.vue')
           }
         ]
       }
@@ -105,10 +109,6 @@ const routes = [
         component: () => import('../views/mypage/inform.vue')
       }
     ]
-  },
-  {
-    path: '/post',
-    component: () => import('../views/post')
   },
   {
     path: '*',

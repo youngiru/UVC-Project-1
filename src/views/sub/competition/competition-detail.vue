@@ -89,7 +89,7 @@
           <b-table
             striped
             hover
-            :items="activites_data"
+            :items="postList"
             :fields="activites_title"
             style="margin-bottom: 70px"
             selectable
@@ -126,7 +126,8 @@
 </template>
 
 <script>
-import inform from '../../post/inform.vue'
+import mapGetters from 'vuex'
+import inform from './inform.vue'
 
 export default {
   components: {
@@ -143,9 +144,9 @@ export default {
         }
       ],
       activites_title: [
-        { key: 'activites_num', label: '번호' },
-        { key: 'activites_name', label: '작성자' },
-        { key: 'activites_title_data', label: '제목' }
+        { key: 'id', label: '번호' },
+        { key: 'userId', label: '작성자' },
+        { key: 'title', label: '제목' }
       ],
       activites_data: [
         { activites_num: 1, activites_name: '김경은', activites_title_data: '모집합니다' },
@@ -180,11 +181,12 @@ export default {
           // 등록이 성공한 경우
 
           // 1. 메시지 출력
-          this.$byToast.toast('등록되었습니다.', {
-            title: 'SUCCESS',
-            variant: 'success',
-            solid: true
-          })
+          // this.$byToast.toast('등록되었습니다.', {
+          //   title: 'SUCCESS',
+          //   variant: 'success',
+          //   solid: true
+          // })
+          alert('등록되었습니다!')
 
           // 2. 리스트 재검색
           this.searchPostList()
@@ -253,16 +255,16 @@ export default {
       this.$router.push('/sub/competition/competition-detail-2')
     },
     searchPostList() {
-      this.$store.dispatch('actPostList', this.search)
+      this.$store.dispatch('actCompetitionList', this.search)
     },
     onClickAddNew() {
       // 신규등록
 
       // 1. 입력모드 설정
-      this.$store.dispatch('actPostInputMode', 'insert')
+      this.$store.dispatch('actCompetitionInputMode', 'insert')
 
       // 2. 상세정보 초기화
-      this.$store.dispatch('actPostInit')
+      this.$store.dispatch('actCompetitionInit')
 
       // 3. 모달 출력
       // this.$byModal.show('modal-post-inform')
@@ -272,10 +274,10 @@ export default {
       // (수정을 위한) 상세정보
 
       // 1. 입력모드 설정
-      this.$store.dispatch('actPostInputMode', 'update')
+      this.$store.dispatch('actCompetitionInputMode', 'update')
 
       // 2. 상세정보 초기화
-      this.$store.dispatch('actPostInit', id)
+      this.$store.dispatch('actCompetitionInit', id)
 
       // 3. 모달 출력
       // this.$byModal.show('modal-post-inform')

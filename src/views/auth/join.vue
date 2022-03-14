@@ -2,25 +2,33 @@
   <div id="join_wrap">
     <span class="join_title">회원가입</span>
     <span class="join_top_line"></span>
-    <b-container fluid style="width: 900px">
-      <b-row v-for="type in types" :key="type" class="my-1">
-        <b-col sm="3">
-          <label :for="`type-${type}`">
-            <code class="join_sm_text">{{ type }}</code
-            >:</label
-          >
-        </b-col>
-        <b-col sm="9">
-          <b-form-input :id="`type-${type}`" :type="type"></b-form-input>
-        </b-col>
-      </b-row>
-      <label for="address" class="join_address_title">지역</label>
-      <input id="join_address" v-model="postcode" type="text" placeholder="우편번호" />
-      <input id="join_address_btn" type="button" value="우편번호 찾기" @click="showApi()" /><br />
-      <input id="address" v-model="address" type="text" placeholder="주소" /><br />
-      <input id="detailAddress" type="text" placeholder="상세주소" />
+    <b-container fluid style="width: 700px">
+      <b-form-group id="join-name" label="이름" label-for="name">
+        <b-form-input id="name" v-model="name" type="text" required></b-form-input>
+      </b-form-group>
+      <b-form-group id="join-nickname" label="닉네임" label-for="nickname">
+        <b-form-input id="nickname" v-model="nickname" required></b-form-input>
+      </b-form-group>
+      <b-form-group id="join-userid" label="아이디" label-for="userid">
+        <b-form-input id="userid" v-model="userid" required></b-form-input>
+      </b-form-group>
+      <b-form-group id="join-password" label="비밀번호" label-for="password">
+        <b-form-input id="password" v-model="password" required type="password"></b-form-input>
+      </b-form-group>
+      <b-form-group id="join-email" label="email" label-for="email">
+        <b-form-input id="email" v-model="email" required></b-form-input>
+      </b-form-group>
+      <b-form-group id="join-phone" label="전화번호" label-for="phone">
+        <b-form-input id="phone" v-model="phone" required></b-form-input>
+      </b-form-group>
+      <b-form-group id="join-address" label="지역" label-for="address">
+        <input id="join_address" v-model="postcode" type="text" placeholder="우편번호" />
+        <input id="join_address_btn" type="button" value="우편번호 찾기" @click="showApi()" /><br />
+        <input id="address" v-model="address" type="text" placeholder="주소" /><br />
+        <input id="detailAddress" v-model="detailAddress" type="text" placeholder="상세주소" />
+      </b-form-group>
     </b-container>
-    <input id="join_submit" type="submit" value="회원가입" />
+    <input id="join_submit" type="submit" value="회원가입" @click="submit()" />
   </div>
 </template>
 
@@ -28,10 +36,15 @@
 export default {
   data() {
     return {
-      types: ['이름', '닉네임', '아이디', '비밀번호', 'email', '전화번호'],
-      postcode: '',
+      name: '',
+      nickname: '',
+      userid: '',
+      password: '',
+      email: '',
+      phone: '',
       address: '',
-      extraAddress: ''
+      detailAddress: '',
+      show: true
     }
   },
   methods: {
@@ -68,6 +81,71 @@ export default {
           this.address = fullRoadAddr
         }
       }).open()
+    },
+    // 회원가입 제출 메소드
+    submit() {
+      setTimeout(() => {
+        if (!this.name) {
+          this.$bvToast.toast('이름을 입력하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.nickname) {
+          this.$bvToast.toast('닉네임을 입력하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.password) {
+          this.$bvToast.toast('비밀번호를 입력하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.email) {
+          this.$bvToast.toast('이메일을 입력하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.phone) {
+          this.$bvToast.toast('전화번호를 입력하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.address) {
+          this.$bvToast.toast('주소를 입력해주세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.detailAddress) {
+          this.$bvToast.toast('상세주소를 입력해주세요', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+
+        this.$router.push('/')
+        this.$store.dispatch('actUserInsert', this.user)
+        // localStorage.removeItem('userRole')
+      }, 1000)
     }
   }
 }

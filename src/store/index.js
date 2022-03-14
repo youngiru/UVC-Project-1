@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Auth from './models/auth'
 import Post from './models/post'
+import Activity from './models/activities'
+import Competition from './models/competition'
+import Study from './models/study'
 import User from './models/user'
 import Mypage from './models/mypage'
 
@@ -14,6 +17,9 @@ export default new Vuex.Store({
   modules: {
     Auth,
     Post,
+    Activity,
+    Competition,
+    Study,
     User,
     Mypage
   }

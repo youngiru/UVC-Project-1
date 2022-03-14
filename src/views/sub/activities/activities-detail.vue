@@ -14,15 +14,15 @@
     </div>
     <div>
       <b-tabs content-class="mt-3 activities-detail-main" active-nav-item-class="text-black">
-        <b-tab v-for="k in activites.length" :key="k" title="소개" active>
+        <b-tab v-for="k in activities.length" :key="k" title="소개" active>
           <p>
             <span class="activities-detail-title">접수기간</span>
-            <span>{{ activites[k - 1].time }}</span>
+            <span>{{ activities[k - 1].time }}</span>
             <span class="activities-detail-title">기관</span>
             <span class="activities-detail-agency">주최</span>
             <span>화성시</span>
           </p>
-          <img :src="activites[k - 1].img" alt="" class="activities-detail-img" />
+          <img :src="activities[k - 1].img" alt="" class="activities-detail-img" />
           <div class="activities-detail-main-text">
             <p>
               [화성시] 2022년 화성시 평화 서포터즈 모집
@@ -66,7 +66,7 @@
         <b-tab title="팀원 모집">
           <b-button class="activities-detail-team-btn" @click="onClickAddNew">팀원 모집 글쓰기</b-button>
           <div>
-            <b-table small hover striped :items="postList" :fields="activites_title" style="margin-bottom: 70px">
+            <b-table small hover striped :items="activityList" :fields="activities_title" style="margin-bottom: 70px">
               <template #cell(User)="row">
                 {{ row.item.User && row.item.User.nickname }}
               </template>
@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import inform from '../../post/inform.vue'
+import inform from './inform.vue'
 
 export default {
   components: {
@@ -117,7 +117,7 @@ export default {
   },
   data() {
     return {
-      activites: [
+      activities: [
         {
           id: '1',
           time: '2월 23일(수) ~ 3월 4일(금)',
@@ -125,24 +125,24 @@ export default {
           img: 'https://cf-cpi.campuspick.com/activity/164602004724428.jpg'
         }
       ],
-      activites_title: [
-        { key: 'activites_num', label: '번호' },
-        { key: 'activites_name', label: '작성자' },
-        { key: 'activites_title_data', label: '제목' }
+      activities_title: [
+        { key: 'activities_num', label: '번호' },
+        { key: 'activities_name', label: '작성자' },
+        { key: 'activities_title_data', label: '제목' }
       ],
-      // activites_data: [
-      //   { activites_num: 1, activites_name: '김경은', activites_title_data: '모집합니다' },
-      //   { activites_num: 2, activites_name: '김영일', activites_title_data: '모집합니다' },
-      //   { activites_num: 3, activites_name: '최송이', activites_title_data: '모집합니다' },
-      //   { activites_num: 4, activites_name: '박정혜', activites_title_data: '모집합니다' }
-      // ],
+      activities_data: [
+        { activities_num: 1, activities_name: '김경은', activities_title_data: '모집합니다' },
+        { activities_num: 2, activities_name: '김영일', activities_title_data: '모집합니다' },
+        { activities_num: 3, activities_name: '최송이', activities_title_data: '모집합니다' },
+        { activities_num: 4, activities_name: '박정혜', activities_title_data: '모집합니다' }
+      ],
       search: {
         title: null
       }
     }
   },
   computed: {
-    postList() {
+    activityList() {
       return this.$store.getters.PostList
     },
     insertedResult() {
@@ -158,19 +158,21 @@ export default {
   watch: {
     insertedResult(value) {
       // 등록 후 처리
+      console.log('insertedResult', value)
       if (value !== null) {
         if (value > 0) {
           // 등록이 성공한 경우
 
           // 1. 메시지 출력
-          this.$byToast.toast('등록되었습니다.', {
-            title: 'SUCCESS',
-            variant: 'success',
-            solid: true
-          })
+          // this.$byToast.toast('등록되었습니다.', {
+          //   title: 'SUCCESS',
+          //   variant: 'success',
+          //   solid: true
+          // })
+          alert('등록되었습니다!')
 
           // 2. 리스트 재검색
-          this.searchPostList()
+          this.searchActivityList()
         } else {
           // 등록이 실패한 경우
 
@@ -198,7 +200,7 @@ export default {
             })
 
             // 2. 리스트 재검색
-            this.searchPostList()
+            this.searchActivityList()
           } else {
             // 수정이 실패한 경우
 
@@ -229,20 +231,20 @@ export default {
     }
   },
   created() {
-    this.searchPostList()
+    this.searchActivityList()
   },
   methods: {
-    searchPostList() {
-      this.$store.dispatch('actPostList', this.search)
+    searchActivityList() {
+      this.$store.dispatch('actActivityList', this.search)
     },
     onClickAddNew() {
       // 신규등록
 
       // 1. 입력모드 설정
-      this.$store.dispatch('actPostInputMode', 'insert')
+      this.$store.dispatch('actActivityInputMode', 'insert')
 
       // 2. 상세정보 초기화
-      this.$store.dispatch('actPostInit')
+      this.$store.dispatch('actActivityInit')
 
       // 3. 모달 출력
       // this.$byModal.show('modal-post-inform')
@@ -252,10 +254,10 @@ export default {
       // (수정을 위한) 상세정보
 
       // 1. 입력모드 설정
-      this.$store.dispatch('actPostInputMode', 'update')
+      this.$store.dispatch('actActivityInputMode', 'update')
 
       // 2. 상세정보 초기화
-      this.$store.dispatch('actPostInit', id)
+      this.$store.dispatch('actActivityInit', id)
 
       // 3. 모달 출력
       // this.$byModal.show('modal-post-inform')
@@ -265,7 +267,7 @@ export default {
       // 삭제
       this.$byModal.msgBoxConfirm('삭제하시겠습니까?').then(value => {
         if (value) {
-          this.$store.dispatch('actPostDelete', id)
+          this.$store.dispatch('actActivityDelete', id)
         }
       })
     },
