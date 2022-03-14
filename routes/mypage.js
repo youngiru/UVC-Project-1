@@ -1,22 +1,19 @@
 const express = require('express');
 const logger = require('../lib/logger');
-const userService = require('../service/userService');
+const mypageService = require('../service/mypageService');
 
 const router = express.Router();
-// const multer = require('multer');
-// const path = require('path');
 const { isLoggedIn } = require('../lib/middleware');
-const User = require('../models/user');
 
 router.get('/:id', async (req, res) => {
   try {
     const params = {
       id: req.params.id,
     };
-    logger.info(`(user.list.params) ${JSON.stringify(params)}`);
+    logger.info(`(user.info.params) ${JSON.stringify(params)}`);
 
-    const result = await userService.list(params);
-    logger.info(`(user.list.result) ${JSON.stringify(result)}`);
+    const result = await mypageService.info(params);
+    logger.info(`(user.info.result) ${JSON.stringify(result)}`);
 
     return res.status(200).json(result);
   } catch (err) {
@@ -29,12 +26,14 @@ router.put('/:id', async (req, res) => {
     const params = {
       id: req.params.id,
       name: req.body.name,
+      userid: req.body.userid,
       nickname: req.body.nickname,
       password: req.body.password,
+      updatedPw: req.body.updatedPw,
       email: req.body.email,
       phone: req.body.phone,
     };
-    logger.info(`(user.update.params) ${JSON.stringify(params)}`);
+    logger.info(`(mypage.update.params) ${JSON.stringify(params)}`);
 
     if (!params.email) {
       const err = new Error('Not allowed null');
@@ -43,9 +42,27 @@ router.put('/:id', async (req, res) => {
       return res.status(500).json({ err: err.toString() });
     }
 
-    const result = await userService.edit(params);
-    logger.info(`(user.update.result) ${JSON.stringify(result)}`);
+    const result = await mypageService.edit(params);
+    logger.info(`(mypage.update.result) ${JSON.stringify(result)}`);
 
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(500).json({ err: err.toString() });
+  }
+});
+
+// 삭제
+router.delete('/:id', async (req, res) => {
+  try {
+    const params = {
+      id: req.params.id,
+    };
+    logger.info(`(mypage.delete.params) ${JSON.stringify(params)}`);
+
+    const result = await mypageService.delete(params);
+    logger.info(`(mypage.delete.result) ${JSON.stringify(result)}`);
+
+    // 최종 응답
     return res.status(200).json(result);
   } catch (err) {
     return res.status(500).json({ err: err.toString() });
