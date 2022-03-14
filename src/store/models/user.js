@@ -75,7 +75,7 @@ export default {
       context.commit('setInputMode', payload)
     },
     // 사용자 상세정보 조회
-    actDepartmentInfo(context, payload) {
+    actUserInfo(context, payload) {
       // 상태값 초기화
       context.commit('setDepartment', { ...stateInit.Department })
 
@@ -86,7 +86,7 @@ export default {
       })
     },
     // 사용자 수정
-    actDepartmentUpdate(context, payload) {
+    actUserUpdate(context, payload) {
       // 상태값 초기화
       context.commit('setUpdatedResult', null)
 

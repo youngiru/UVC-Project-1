@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-modal id="modal-mypage-inform" :title="getTitle" @ok="onSubmit">
+    <b-modal id="modal-mypage-inform" :items="MypageList" :title="getTitle" @ok="onSubmit">
       <div>
         <b-form-group label="이름" label-for="name" label-cols="3">
-          <b-form-input id="name" v-model="mypage.name" disabled></b-form-input>
+          <b-form-input id="name" v-model="mypage.name"></b-form-input>
         </b-form-group>
         <b-form-group label="아이디" label-for="userid" label-cols="3">
-          <b-form-input id="mypageid" v-model="mypage.userid" disabled></b-form-input>
+          <b-form-input id="mypageid" v-model="mypage.userid"></b-form-input>
         </b-form-group>
         <b-form-group label="닉네임" label-for="nickname" label-cols="3">
           <b-form-input id="nickname" v-model="mypage.nickname"></b-form-input>

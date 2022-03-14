@@ -62,6 +62,7 @@ export default {
   watch: {
     tokenUser(value) {
       if (value && value.id && value.id > 0) {
+        console.log('tokenuser', value)
         // 로그인이 완료된 상황
         this.$router.push('/') // 메인 페이지 이동
       }

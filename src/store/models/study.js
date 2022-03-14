@@ -58,16 +58,13 @@ export default {
   actions: {
     // 리스트 조회
     actStudyList(context, payload) {
-      console.log('StudyList', payload)
       /* RestAPI 호출 */
       api
         .get(`/serverApi/posts?boardId=1`, { params: payload })
         // .get(`/serverApi/posts?boardId=1`, payload)
         .then(response => {
-          console.log('listtestestestse', response)
-          //여길 그냥 안들어와요 따른거 호출하는거같음
           const studyList = response && response.data && response.data.rows
-          console.log(response)
+          console.log('studyList', response)
           context.commit('setStudyList', studyList)
         })
         .catch(error => {

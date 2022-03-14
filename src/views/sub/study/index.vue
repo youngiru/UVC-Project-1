@@ -11,6 +11,9 @@
           <template #cell(name)="row">
             {{ row.item.Category && row.item.Category.name }}
           </template>
+          <template #cell(title)="row">
+            {{ row.item.title }}
+          </template>
           <template #cell(createdAt)="row">
             {{ row.item.createdAt.substring(0, 10) }}
           </template>
@@ -30,16 +33,6 @@
         </b-table>
       </div>
     </div>
-    <b-table
-      striped
-      hover
-      :items="study_data"
-      :fields="studyFields"
-      style="margin-bottom: 70px"
-      selectable
-      @row-selected="onRowSelected"
-    >
-    </b-table>
     <inform />
   </div>
 </template>
@@ -65,21 +58,15 @@ export default {
         {
           key: 'title',
           label: '제목'
+        },
+        {
+          key: 'createdAt',
+          label: '등록일'
         }
       ],
-      // 테스트 데이터
-      study_data: [
-        { id: 1, nickName: '김영일', title: '스터디' },
-        { id: 2, nickName: '이학수', title: '스터디 모집' },
-        { id: 3, nickName: '윤희영', title: '스터디 같이 해요' },
-        { id: 4, nickName: '김경은', title: '스터디 모집합니다' },
-        { id: 5, nickName: '이주현', title: '스터디' },
-        { id: 6, nickName: '진정우', title: '모집' },
-        { id: 7, nickName: '이다운', title: '같이해요' },
-        { id: 8, nickName: '유지영', title: '스터디 할 사람' },
-        { id: 9, nickName: '최송이', title: '스터디 모집' },
-        { id: 10, nickName: '박정혜', title: '스터디 같이 해주세요' }
-      ]
+      search: {
+        boardId: 1
+      }
     }
   },
   computed: {

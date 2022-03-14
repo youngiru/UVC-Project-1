@@ -286,7 +286,7 @@ export default {
     },
     isMyContent(userId) {
       // 해당 컨텐츠의 작성자 일치 여부
-      if (userId === this.$store.getters.TokenUser.id) {
+      if (userId === this.$store.getters.TokenUser.userid) {
         return true
       } else {
         return false

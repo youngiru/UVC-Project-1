@@ -3,6 +3,7 @@
     <h3>마이페이지</h3>
     <div class="mypage-mainbox">
       <span class="mypage_title">회원정보</span>
+      <!-- 테스트 데이터 -->
       <b-container>
         <b-row>
           <b-col cols="3" class="mypage_imgbox">
@@ -26,7 +27,7 @@
         </b-row>
       </b-container>
       <div class="mypage_inform_btnbox">
-        <b-button v-b-modal.modal-1 class="mypage_inform_btn" @click="onClickEdit">정보수정</b-button>
+        <b-button v-b-modal.modal-1 class="mypage_inform_btn" @click="onClickEdit(row.item.User.id)">정보수정</b-button>
       </div>
     </div>
 
@@ -43,14 +44,13 @@ export default {
     inform: inform
   },
   data() {
-    return {}
+    return {
+      userid: null
+    }
   },
   computed: {
     MypageList() {
       return this.$store.getters.MypageList
-    },
-    insertedResult() {
-      return this.$store.getters.MypageInsertedResult
     },
     updatedResult() {
       return this.$store.getters.MypageUpdatedResult
@@ -60,31 +60,6 @@ export default {
     }
   },
   watch: {
-    insertedResult(value) {
-      // 등록 후 처리
-      if (value !== null) {
-        if (value > 0) {
-          //등록이 성공한 경우
-
-          // 1. 메세지 출력
-          this.$bvToast.toast('등록 되었습니다.', {
-            title: 'SUCCESS',
-            variant: 'success',
-            solid: true
-          })
-
-          // 2. 리스트 재 검색
-          this.searchMypageList()
-        } else {
-          // 등록이 실패한 경우
-          this.$bvToast.toast('등록이 실패하였습니다.', {
-            title: 'ERROR',
-            variant: 'danger',
-            solid: true
-          })
-        }
-      }
-    },
     updatedResult(value) {
       // 수정 후 처리
       if (value !== null) {
@@ -142,18 +117,6 @@ export default {
   methods: {
     searchMypageList() {
       this.$store.dispatch('actMypageList')
-    },
-    onClickAddNew() {
-      // 신규등록
-
-      // 1. 입력모드 설정
-      this.$store.dispatch('actMypageInputMode', 'insert')
-
-      // 2. 상세정보 초기화
-      this.$store.dispatch('actMypageInit')
-
-      // 3. 모달 출력
-      this.$bvModal.show('modal-Mypage-inform')
     },
     onClickEdit(id) {
       // (수정을 위한)상세정보
