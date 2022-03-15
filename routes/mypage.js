@@ -3,7 +3,7 @@ const logger = require('../lib/logger');
 const mypageService = require('../service/mypageService');
 
 const router = express.Router();
-const { isLoggedIn } = require('../lib/middleware');
+// const { isLoggedIn } = require('../lib/middleware');
 
 router.get('/:id', async (req, res) => {
   try {

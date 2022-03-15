@@ -45,6 +45,7 @@ const dao = {
     return new Promise((resolve, reject) => {
       Team.findAndCountAll({
         ...setQuery,
+        where: { postId: params.postId },
         include: [
           {
             model: User,
@@ -66,6 +67,10 @@ const dao = {
         params.id,
         {
           include: [
+            {
+              model: User,
+              attributes: ['id', 'nickname'],
+            },
             {
               model: Teamcomment,
               attributes: ['id', 'userId', 'content'],

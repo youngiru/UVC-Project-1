@@ -27,7 +27,7 @@ const service = {
   async edit(params) {
     let result = null;
 
-    if(params.updatedPw){
+    if (params.updatedPw) {
       // 1. 비밀번호 암호화
       let hashPassword = null;
       try {
@@ -39,13 +39,13 @@ const service = {
           reject(err);
         });
       }
-  
+
       // 2. 사용자 수정 처리
       const newParams = {
         ...params,
         password: hashPassword,
       };
-  
+
       try {
         result = await mypageDao.update(newParams);
         logger.debug(`(mypageService.reg) ${JSON.stringify(result)}`);
@@ -55,26 +55,25 @@ const service = {
           reject(err);
         });
       }
-  
+
       // 결과값 return
       return new Promise((resolve) => {
         resolve(result);
       });
-    } else {
-      try {
-        result = await mypageDao.update(params);
-        logger.debug(`(mypageService.edit) ${JSON.stringify(result)}`);
-      } catch (err) {
-        logger.error(`(mypageService.edit) ${err.toString()}`);
-        return new Promise((resolve, reject) => {
-          reject(err);
-        });
-      }
-  
-      return new Promise((resolve) => {
-        resolve(result);
+    }
+    try {
+      result = await mypageDao.update(params);
+      logger.debug(`(mypageService.edit) ${JSON.stringify(result)}`);
+    } catch (err) {
+      logger.error(`(mypageService.edit) ${err.toString()}`);
+      return new Promise((resolve, reject) => {
+        reject(err);
       });
     }
+
+    return new Promise((resolve) => {
+      resolve(result);
+    });
   },
   // delelte
   async delete(params) {

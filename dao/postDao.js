@@ -67,8 +67,8 @@ const dao = {
           },
           {
             model: User,
-          attributes: ['id', 'nickname']
-        },
+            attributes: ['id', 'nickname'],
+          },
         ],
       }).then((selectedList) => {
         resolve(selectedList);
@@ -86,6 +86,10 @@ const dao = {
         {
           include: [
             {
+              model: User,
+              attributes: ['id', 'nickname'],
+            },
+            {
               model: Comment,
               attributes: ['id', 'userId', 'content'],
               include: {
@@ -96,7 +100,7 @@ const dao = {
             {
               model: Team,
               as: 'Teams',
-              attributes: ['id', 'postId', 'title', 'content'],
+              attributes: ['id', 'postId', 'title', 'content', 'tag'],
               include: [
               ],
             },
