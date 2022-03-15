@@ -14,6 +14,7 @@ router.post('/', async (req, res) => {
       title: req.body.title,
       content: req.body.content,
       tag: req.body.tag,
+      imagePaths: req.body.imagePaths,
     };
     logger.info(`(post.reg.params) ${JSON.stringify(params)}`);
 

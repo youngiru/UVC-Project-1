@@ -1,5 +1,6 @@
 const logger = require('../lib/logger');
 const postDao = require('../dao/postDao');
+const imageService = require('./imageService');
 
 const service = {
   // department 입력
@@ -8,6 +9,15 @@ const service = {
 
     try {
       inserted = await postDao.insert(params);
+      if (inserted.insertedId > 0) {
+        for (let i = 0; i < params.imagePaths?.length; i++) {
+          const imageParams = {
+            postId: inserted.insertedId,
+            path: params.imagePaths[i],
+          };
+          await imageService.reg(imageParams);
+        }
+      }
       logger.debug(`(postService.reg) ${JSON.stringify(inserted)}`);
     } catch (err) {
       logger.error(`(postService.reg) ${err.toString()}`);

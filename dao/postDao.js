@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const {
-  Post, Comment, Category, Board, User, Team,
+  Post, Comment, Category, Board, User, Team, Image,
 } = require('../models/index');
 
 const dao = {
@@ -8,7 +8,7 @@ const dao = {
   insert(params) {
     return new Promise((resolve, reject) => {
       Post.create(params).then((inserted) => {
-        resolve(inserted);
+        resolve({ insertedId: inserted.id });
       }).catch((err) => {
         reject(err);
       });
@@ -87,10 +87,12 @@ const dao = {
           include: [
             {
               model: User,
+              as: 'Users',
               attributes: ['id', 'nickname'],
             },
             {
               model: Comment,
+              as: 'Comments',
               attributes: ['id', 'userId', 'content'],
               include: {
                 model: User,
@@ -104,6 +106,10 @@ const dao = {
               include: [
               ],
             },
+            {
+              model: Image,
+              as: 'Images'
+            }
           ],
         },
       ).then((selectedInfo) => {
