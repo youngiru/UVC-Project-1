@@ -2,7 +2,6 @@ const logger = require('../lib/logger');
 const categoryDao = require('../dao/categoryDao');
 
 const service = {
-  // department 입력
   async reg(params) {
     let inserted = null;
 

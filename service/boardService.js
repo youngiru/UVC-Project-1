@@ -2,7 +2,6 @@ const logger = require('../lib/logger');
 const boardDao = require('../dao/boardDao');
 
 const service = {
-  // board 입력
   async reg(params) {
     let inserted = null;
 

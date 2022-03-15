@@ -3,7 +3,6 @@ const postDao = require('../dao/postDao');
 const imageService = require('./imageService');
 
 const service = {
-  // department 입력
   async reg(params) {
     let inserted = null;
 
