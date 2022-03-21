@@ -66,12 +66,21 @@
         <b-tab title="팀원 모집">
           <b-button class="activities-detail-team-btn" @click="onClickAddNew">팀원 모집 글쓰기</b-button>
           <div>
-            <b-table small hover striped :items="activityList" :fields="activities_title" style="margin-bottom: 70px">
+            <b-table
+              small
+              hover
+              striped
+              :items="activityList"
+              :fields="activitiesFields"
+              style="margin-bottom: 70px"
+              selectable
+              @row-selected="onRowSelected"
+            >
               <template #cell(User)="row">
                 {{ row.item.User && row.item.User.nickname }}
               </template>
-              <template #cell(Category)="row">
-                {{ row.item.Category && row.item.Category.name }}
+              <template #cell(title)="row">
+                {{ row.item.title }}
               </template>
               <template #cell(createdAt)="row">
                 {{ row.item.createdAt.substring(0, 10) }}
@@ -120,39 +129,40 @@ export default {
       activities: [
         {
           id: '1',
+          postId: '1',
           time: '2월 23일(수) ~ 3월 4일(금)',
           agency: '화성시',
           img: 'https://cf-cpi.campuspick.com/activity/164602004724428.jpg'
         }
       ],
-      activities_title: [
-        { key: 'activities_num', label: '번호' },
-        { key: 'activities_name', label: '작성자' },
-        { key: 'activities_title_data', label: '제목' }
+      activitiesFields: [
+        { key: 'User', label: '작성자' },
+        { key: 'title', label: '제목' },
+        { key: 'createdAt', label: '등록일' }
       ],
       activities_data: [
-        { activities_num: 1, activities_name: '김경은', activities_title_data: '모집합니다' },
-        { activities_num: 2, activities_name: '김영일', activities_title_data: '모집합니다' },
-        { activities_num: 3, activities_name: '최송이', activities_title_data: '모집합니다' },
-        { activities_num: 4, activities_name: '박정혜', activities_title_data: '모집합니다' }
+        { activities_num: 1, activities_name: '김경은', title: '모집합니다' },
+        { activities_num: 2, activities_name: '김영일', title: '모집합니다' },
+        { activities_num: 3, activities_name: '최송이', title: '모집합니다' },
+        { activities_num: 4, activities_name: '박정혜', title: '모집합니다' }
       ],
       search: {
-        title: null
+        postId: null
       }
     }
   },
   computed: {
     activityList() {
-      return this.$store.getters.PostList
+      return this.$store.getters.ActivityList
     },
     insertedResult() {
-      return this.$store.getters.PostInsertedResult
+      return this.$store.getters.ActivityInsertedResult
     },
     updatedResult() {
-      return this.$store.getters.PostUpdatedResult
+      return this.$store.getters.ActivityUpdatedResult
     },
     deletedResult() {
-      return this.$store.getters.PostDeletedResult
+      return this.$store.getters.ActivityDeletedResult
     }
   },
   watch: {
@@ -164,11 +174,6 @@ export default {
           // 등록이 성공한 경우
 
           // 1. 메시지 출력
-          // this.$byToast.toast('등록되었습니다.', {
-          //   title: 'SUCCESS',
-          //   variant: 'success',
-          //   solid: true
-          // })
           alert('등록되었습니다!')
 
           // 2. 리스트 재검색
@@ -234,6 +239,9 @@ export default {
     this.searchActivityList()
   },
   methods: {
+    onRowSelected() {
+      this.$router.push('/sub/activities/activities-detail-2')
+    },
     searchActivityList() {
       this.$store.dispatch('actActivityList', this.search)
     },
@@ -246,9 +254,13 @@ export default {
       // 2. 상세정보 초기화
       this.$store.dispatch('actActivityInit')
 
-      // 3. 모달 출력
-      // this.$byModal.show('modal-post-inform')
-      this.$root.$emit('bv::show::modal', 'modal-post-inform')
+      // 3. 로그인 여부 체크 후 모달 출력
+      if (window.localStorage.token) {
+        return this.$root.$emit('bv::show::modal', 'modal-team-inform')
+      } else {
+        alert('로그인을 한 후 이용해주세요.')
+        return false
+      }
     },
     onClickEdit(id) {
       // (수정을 위한) 상세정보
@@ -260,8 +272,7 @@ export default {
       this.$store.dispatch('actActivityInit', id)
 
       // 3. 모달 출력
-      // this.$byModal.show('modal-post-inform')
-      this.$root.$emit('bv::show::modal', 'modal-post-inform')
+      this.$root.$emit('bv::show::modal', 'modal-team-inform')
     },
     onClickDelete(id) {
       // 삭제
@@ -273,7 +284,7 @@ export default {
     },
     isMyContent(userId) {
       // 해당 컨텐츠의 작성자 일치 여부
-      if (userId === this.$store.getters.TokenUser.id) {
+      if (userId === this.$store.getters.TokenUser.userid) {
         return true
       } else {
         return false
