@@ -3,8 +3,9 @@
     <div class="header_u_af">
       <ul class="header_u">
         <li>
-          <router-link to="/auth/logout" class="color_000">{{ getLogin }}</router-link>
+          <!-- <router-link to="/auth/logout" class="color_000">{{ getLogin }}</router-link> -->
         </li>
+        <li class="util_btn" @click="log">{{ getLogin }}</li>
         <li class="util_btn" @click="onRowUtil">{{ getUtil }}</li>
       </ul>
     </div>
@@ -37,7 +38,7 @@ export default {
   computed: {
     isLoggedin() {
       let login = false
-      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+      if (window.localStorage.token) {
         login = true
       }
 
@@ -48,7 +49,7 @@ export default {
     },
     getLogin() {
       let log = ''
-      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+      if (window.localStorage.token) {
         log = '로그아웃'
       } else {
         log = '로그인'
@@ -58,7 +59,7 @@ export default {
     },
     getUtil() {
       let text = ''
-      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+      if (window.localStorage.token) {
         text = '마이페이지'
       } else {
         text = '회원가입'
@@ -68,8 +69,15 @@ export default {
     }
   },
   methods: {
+    log() {
+      if (window.localStorage.token) {
+        this.$router.push('/auth/logout')
+      } else {
+        this.$router.push('/auth/login')
+      }
+    },
     onRowUtil() {
-      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+      if (window.localStorage.token) {
         this.$router.push('/mypage')
       } else {
         this.$router.push('/auth/join-2')

@@ -6,6 +6,7 @@ const stateInit = {
   Activity: {
     id: null,
     userId: null,
+    postId: 1,
     categoryId: null,
     title: null,
     content: null,
@@ -56,12 +57,10 @@ export default {
   actions: {
     // 리스트 조회
     actActivityList(context, payload) {
-      console.log('PostList', payload)
       /* RestAPI 호출 */
       api
-        .get('/serverApi/posts', { params: payload })
+        .get(`/serverApi/teams?postId=${payload.postId}`)
         .then(response => {
-          console.log('list', response)
           const activityList = response && response.data && response.data.rows
           context.commit('setActivityList', activityList)
         })
@@ -75,10 +74,9 @@ export default {
     actActivityInsert(context, payload) {
       // 상태값 초기화
       context.commit('setInsertedResult', null)
-      console.log('Activity', payload)
       /* RestAPI 호출 */
       axios
-        .post(`/serverApi/posts`, payload)
+        .post(`/serverApi/teams`, payload)
         .then(response => {
           // 정상 등록인 경우 처리
           const insertedResult = response && response.data && response.data.id
@@ -93,7 +91,7 @@ export default {
 
     // 정보 초기화
     actActivityInit(context, payload) {
-      context.commit('setActivity', { ...stateInit.Post })
+      context.commit('setActivity', { ...stateInit.Activity })
     },
     // 입력모드 설정
     actActivityInputMode(context, payload) {
@@ -103,20 +101,19 @@ export default {
     // 상세정보 조회
     actActivityInfo(context, payload) {
       // 상태값 초기화
-      context.commit('setActivity', { ...stateInit.Post })
+      context.commit('setActivity', { ...stateInit.Activity })
 
       /* RestAPI 호출 */
       axios
-        .get(`/serverApi/posts/${payload}`)
+        .get(`/serverApi/teams/${payload}`)
         .then(response => {
-          console.log('ddd', response)
-          const post = response && response.data
-          context.commit('setActivity', post)
+          const activity = response && response.data
+          context.commit('setActivity', activity)
         })
         .catch(error => {
           // 에러인 경우 처리
           console.error('ActivityInfo.error', error)
-          context.commit('setActivity', {})
+          context.commit('setActivityInfo', -1)
         })
     },
     // 수정
@@ -126,7 +123,7 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .put(`/serverApi/posts/${payload.id}`, payload)
+        .put(`/serverApi/teams/${payload.id}`, payload)
         .then(response => {
           const updatedResult = response && response.data && response.data.updatedCount
           context.commit('setUpdatedResult', updatedResult)
@@ -144,7 +141,7 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .delete(`/serverApi/posts/${payload}`)
+        .delete(`/serverApi/teams/${payload}`)
         .then(response => {
           const deletedResult = response && response.data && response.data.deletedCount
           context.commit('setDeletedResult', deletedResult)

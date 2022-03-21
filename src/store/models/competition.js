@@ -57,15 +57,11 @@ export default {
   actions: {
     // 리스트 조회
     actCompetitionList(context, payload) {
-      console.log('CompetitionList', payload)
       /* RestAPI 호출 */
       api
         .get('/serverApi/teams', { params: payload })
         .then(response => {
-          console.log('listtestestestse', response)
-          //여길 그냥 안들어와요 따른거 호출하는거같음
           const postList = response && response.data && response.data.rows
-          console.log(response)
           context.commit('setCompetitionList', postList)
         })
         .catch(error => {

@@ -1,21 +1,21 @@
 <template>
   <div>
-    <b-modal id="modal-post-inform" size="lg" :title="getTitle" @ok="onSubmit">
+    <b-modal id="modal-team-inform" size="lg" :title="getTitle" @ok="onSubmit">
       <div>
         <b-form-group v-if="inputMode === 'update'" label="id" label-for="code" label-cols="2">
-          <b-form-input id="id" v-model="post.id" disabled></b-form-input>
+          <b-form-input id="id" v-model="activityPost.id" disabled></b-form-input>
         </b-form-group>
         <b-form-group label-for="title">
           <b-form-input
             id="title"
-            v-model="post.title"
+            v-model="activityPost.title"
             placeholder="제목을 입력하세요."
-            :disabled="inputMode === 'update' && post.userId !== this.$store.getters.TokenUser.id"
+            :disabled="inputMode === 'update' && activityPost.userId !== this.$store.getters.TokenUser.id"
           ></b-form-input>
           <div id="hash_wrap">
             <label for="tag"></label>
             <b-form-tags
-              v-model="post.tag"
+              v-model="activityPost.tag"
               input-id="tag"
               placeholder="태그할 지역을 입력하세요."
               remove-on-delete
@@ -26,10 +26,10 @@
 
           <!-- 글 등록 모드 -->
           <editor v-if="inputMode === 'insert'" ref="toastuiEditor" :options="editorOptions" />
-          <div v-if="inputMode === 'update' && post.id !== null">
+          <div v-if="inputMode === 'update' && activityPost.id !== null">
             <!-- 글 수정 모드(내 글은 수정 모드로) -->
             <editor
-              v-if="post.userId === this.$store.getters.TokenUser.id"
+              v-if="activityPost.userId === this.$store.getters.TokenUser.id"
               ref="toastuiEditor"
               :options="editorOptions"
               :initial-value="post.content"
@@ -65,7 +65,8 @@ export default {
     return {
       activityPost: {
         id: null,
-        userId: null,
+        userId: 1,
+        postId: 1,
         categoryId: null,
         title: null,
         content: null,
@@ -116,12 +117,12 @@ export default {
   watch: {
     // 모달이 열린 이후에 감지됨
     infoData(value) {
-      this.post = { ...value }
+      this.activityPost = { ...value }
     }
   },
   created() {
     // 모달이 최초 열릴 때 감지됨
-    this.post = { ...this.infoData }
+    this.activityPost = { ...this.infoData }
   },
   methods: {
     scroll() {
@@ -135,23 +136,22 @@ export default {
       if (this.inputMode === 'insert') {
         // this.post.userId = this.$store.getters.TokenUser.id // 로그인 사용자PK
         const editorContent = this.$refs.toastuiEditor.invoke('getHTML') // 에디터에 작성한 컨텐츠 담기
-        this.post.content = editorContent
-        console.log('onSubmit', editorContent)
-        this.$store.dispatch('actActivityInsert', this.post) // 입력 실행
+        this.activityPost.content = editorContent
+        this.$store.dispatch('actActivityInsert', this.activityPost) // 입력 실행
       }
 
       // 2. 수정인 경우(작성자 본인만 수정 가능)
-      if (this.inputMode === 'update' && this.post.userId === this.$store.getters.TokenUser.id) {
+      if (this.inputMode === 'update' && this.activityPost.userId === this.$store.getters.TokenUser.id) {
         const editorContent = this.$refs.toastuiEditor.invoke('getHTML') //에디터에 작성한 컨텐츠 담기
-        this.post.content = editorContent
+        this.activityPost.content = editorContent
 
-        this.$store.dispatch('actActivityUpdate', this.post) // 수정 실행
+        this.$store.dispatch('actActivityUpdate', this.activityPost) // 수정 실행
       }
       if (this.inputMode === 'update') {
         const editorContent = this.$refs.toastuiEditor.invoke('getHTML') //에디터에 작성한 컨텐츠 담기
-        this.post.content = editorContent
+        this.activityPost.content = editorContent
 
-        this.$store.dispatch('actActivityUpdate', this.post) // 수정 실행
+        this.$store.dispatch('actActivityUpdate', this.activityPost) // 수정 실행
       }
     },
     uploadImage: async blob => {

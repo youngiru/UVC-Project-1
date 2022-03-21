@@ -7,6 +7,7 @@ import Competition from './models/competition'
 import Study from './models/study'
 import User from './models/user'
 import Mypage from './models/mypage'
+import TeamCmt from './models/teamComment'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     Competition,
     Study,
     User,
-    Mypage
+    Mypage,
+    TeamCmt
   }
 })

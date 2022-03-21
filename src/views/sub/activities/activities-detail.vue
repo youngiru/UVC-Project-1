@@ -147,7 +147,7 @@ export default {
         { activities_num: 4, activities_name: '박정혜', title: '모집합니다' }
       ],
       search: {
-        postId: null
+        postId: 1
       }
     }
   },

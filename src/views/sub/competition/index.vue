@@ -26,7 +26,8 @@
     </div>
     <b-button class="activities-detail-team-btn" @click="onClickAddNew">게시글 등록</b-button>
     <div>
-      <b-table small hover striped :items="activityList" :fields="activities_title" style="margin-bottom: 70px">
+      <!--
+      <b-table small hover striped :items="competitionList" :fields="competitionFields" style="margin-bottom: 70px">
         <template #cell(User)="row">
           {{ row.item.User && row.item.User.nickname }}
         </template>
@@ -37,19 +38,22 @@
           {{ row.item.createdAt.substring(0, 10) }}
         </template>
         <template #cell(updateBtn)="row">
-          <!-- 본인 컨텐츠만 수정 가능 -->
+          -->
+      <!-- 본인 컨텐츠만 수정 가능
           <b-button v-if="isMyContent(row.item.userId)" size="sm" variant="success" @click="onClickEdit(row.item.id)"
             >수정</b-button
           >
           <b-button v-else size="sm" variant="info" @click="onClickEdit(row.item.id)">보기</b-button>
         </template>
         <template #cell(deleteBtn)="row">
-          <!-- 본인 컨텐츠만 삭제 가능 -->
+          -->
+      <!-- 본인 컨텐츠만 삭제 가능
           <b-button v-if="isMyContent(row.item.userId)" size="sm" variant="danger" @click="onClickDelete(row.item.id)"
             >삭제</b-button
           >
         </template>
       </b-table>
+      -->
     </div>
     <div class="competition-main">
       <b-row v-for="n in 1" :key="n">
@@ -259,9 +263,13 @@ export default {
       // 2. 상세정보 초기화
       this.$store.dispatch('actActivityInit')
 
-      // 3. 모달 출력
-      // this.$byModal.show('modal-post-inform')
-      this.$root.$emit('bv::show::modal', 'modal-board-inform')
+      // 3. 로그인 여부 체크 후 모달 출력
+      if (window.localStorage.token) {
+        return this.$root.$emit('bv::show::modal', 'modal-board-inform')
+      } else {
+        alert('로그인을 한 후 이용해주세요.')
+        return false
+      }
     },
     onClickEdit(id) {
       // (수정을 위한) 상세정보
@@ -286,7 +294,7 @@ export default {
     },
     isMyContent(userId) {
       // 해당 컨텐츠의 작성자 일치 여부
-      if (userId === this.$store.getters.TokenUser.id) {
+      if (userId === this.$store.getters.TokenUser.userid) {
         return true
       } else {
         return false

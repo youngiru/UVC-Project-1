@@ -3,15 +3,11 @@ import axios from 'axios'
 
 // 초기값 선언
 const stateInit = {
-  Post: {
+  TeamCmt: {
     id: null,
+    teamId: null,
     userId: null,
-    categoryId: null,
-    nickName: null,
-    title: null,
     content: null,
-    tag: null, // 지역 태그
-    images: null,
     createdAt: null,
     updatedAt: null
   }
@@ -19,27 +15,25 @@ const stateInit = {
 
 export default {
   state: {
-    PostList: [],
-    Post: { ...stateInit.Post },
+    TeamCmtList: [],
+    TeamCmt: { ...stateInit.TeamCmt },
     InsertedResult: null, // 입력처리 후 결과
     UpdatedResult: null, // 수정처리 후 결과
-    DeletedResult: null, // 삭제처리 후 결과
-    InputMode: null // 입력모드(등록: insert, 수정: update),
+    DeletedResult: null // 삭제처리 후 결과
   },
   getters: {
-    PostList: state => state.PostList,
-    Post: state => state.Post,
-    PostInsertedResult: state => state.InsertedResult,
-    PostUpdatedResult: state => state.UpdatedResult,
-    PostDeletedResult: state => state.DeletedResult,
-    PostInputMode: state => state.InputMode
+    TeamCmtList: state => state.TeamCmtList,
+    TeamCmt: state => state.TeamCmt,
+    TeamCmtInsertedResult: state => state.InsertedResult,
+    TeamCmtUpdatedResult: state => state.UpdatedResult,
+    TeamCmtDeletedResult: state => state.DeletedResult
   },
   mutations: {
-    setPostList(state, data) {
-      state.PostList = data
+    setTeamCmtList(state, data) {
+      state.TeamCmtList = data
     },
-    setPost(state, data) {
-      state.Post = data
+    setTeamCmt(state, data) {
+      state.TeamCmt = data
     },
     setInsertedResult(state, data) {
       state.InsertedResult = data
@@ -49,76 +43,70 @@ export default {
     },
     setDeletedResult(state, data) {
       state.DeletedResult = data
-    },
-    setInputMode(state, data) {
-      state.InputMode = data
     }
   },
   actions: {
     // 리스트 조회
-    actPostList(context, payload) {
+    actTeamCmtList(context, payload) {
       /* RestAPI 호출 */
       api
-        .get('/serverApi/posts', { params: payload })
+        .get(`/serverApi/teams/${payload.id}`)
         .then(response => {
-          const postList = response && response.data && response.data.rows
-          context.commit('setPostList', postList)
+          const teamCmtList = response && response.data && response.data && response.data.Teamcomments
+          console.log('teamCmtList', response.data)
+          context.commit('setTeamCmtList', teamCmtList)
         })
         .catch(error => {
           // 에러인 경우 처리
-          console.error('PostList.error', error)
-          context.commit('setPostList', [])
+          console.error('TeamCmtList.error', error)
+          context.commit('setTeamCmtList', [])
         })
     },
     // 입력
-    actPostInsert(context, payload) {
+    actTeamCmtInsert(context, payload) {
+      console.log(payload)
       // 상태값 초기화
       context.commit('setInsertedResult', null)
-      console.log('post', payload)
       /* RestAPI 호출 */
       axios
-        .post(`/serverApi/posts`, payload)
+        .post(`/serverApi/teams/${payload.teamId}`, payload)
         .then(response => {
           // 정상 등록인 경우 처리
-          const insertedResult = response && response.data && response.data.id
+          const insertedResult = response && response.data
           context.commit('setInsertedResult', insertedResult)
         })
         .catch(error => {
           // 에러인 경우 처리
-          console.error('PostInsert.error', error)
+          console.error('TeamCmtInsert.error', error)
           context.commit('setInsertedResult', -1)
         })
     },
 
     // 정보 초기화
-    actPostInit(context, payload) {
-      context.commit('setPost', { ...stateInit.Post })
-    },
-    // 입력모드 설정
-    actPostInputMode(context, payload) {
-      context.commit('setInputMode', payload)
+    actTeamCmtInit(context, payload) {
+      context.commit('setTeamCmt', { ...stateInit.TeamCmt })
     },
     // 상세정보 조회
-    actPostInfo(context, payload) {
+    actTeamCmtInfo(context, payload) {
       // 상태값 초기화
-      context.commit('setPost', { ...stateInit.Post })
+      context.commit('setTeamCmt', { ...stateInit.TeamCmt })
 
       /* RestAPI 호출 */
       axios
         .get(`/serverApi/posts/${payload}`)
         .then(response => {
           console.log('ddd', response)
-          const post = response && response.data
-          context.commit('setPost', post)
+          const teamCmt = response && response.data
+          context.commit('setTeamCmt', teamCmt)
         })
         .catch(error => {
           // 에러인 경우 처리
-          console.error('PostInfo.error', error)
-          context.commit('setPost', {})
+          console.error('TeamCmtInfo.error', error)
+          context.commit('setTeamCmtInfo', -1)
         })
     },
     // 수정
-    actPostUpdate(context, payload) {
+    actTeamCmtUpdate(context, payload) {
       // 상태값 초기화
       context.commit('setUpdatedResult', null)
 
@@ -131,12 +119,12 @@ export default {
         })
         .catch(error => {
           // 에러인 경우 처리
-          console.error('PostUpdate.error', error)
+          console.error('TeamCmtUpdate.error', error)
           context.commit('setUpdatedResult', -1)
         })
     },
     // 삭제
-    actPostDelete(context, payload) {
+    actTeamCmtDelete(context, payload) {
       // 상태값 초기화
       context.commit('setDeletedResult', null)
 
@@ -149,7 +137,7 @@ export default {
         })
         .catch(error => {
           // 에러인 경우 처리
-          console.error('PostDelete.error', error)
+          console.eror('PostDelete.error', error)
           context.commit('setDeletedResult', -1)
         })
     }

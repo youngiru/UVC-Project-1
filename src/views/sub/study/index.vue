@@ -4,7 +4,16 @@
     <div>
       <b-button class="activities-detail-team-btn" @click="onClickAddNew">스터디 모집 글쓰기</b-button>
       <div>
-        <b-table small hover striped :items="studyList" :fields="studyFields" style="margin-bottom: 70px">
+        <b-table
+          small
+          hover
+          striped
+          :items="studyList"
+          :fields="studyFields"
+          selectable
+          style="margin-bottom: 70px"
+          @row-selected="onRowSelected"
+        >
           <template #cell(nickname)="row">
             {{ row.item.User && row.item.User.nickname }}
           </template>
@@ -48,10 +57,6 @@ export default {
     return {
       studyFields: [
         {
-          key: 'id',
-          label: '번호'
-        },
-        {
           key: 'nickname',
           label: '작성자'
         },
@@ -85,17 +90,13 @@ export default {
   },
   watch: {
     insertedResult(value) {
+      console.log(value)
       // 등록 후 처리
       if (value !== null) {
-        if (value > 0) {
+        if (value !== 0) {
           // 등록이 성공한 경우
 
           // 1. 메시지 출력
-          // this.$byToast.toast('등록되었습니다.', {
-          //   title: 'SUCCESS',
-          //   variant: 'success',
-          //   solid: true
-          // })
           alert('등록되었습니다!')
 
           // 2. 리스트 재검색
@@ -161,9 +162,6 @@ export default {
     this.searchStudyList()
   },
   methods: {
-    onRowSelected() {
-      this.$router.push('/sub/study/study-detail')
-    },
     searchStudyList() {
       this.$store.dispatch('actStudyList', this.search)
     },
@@ -176,9 +174,13 @@ export default {
       // 2. 상세정보 초기화
       this.$store.dispatch('actStudyInit')
 
-      // 3. 모달 출력
-      // this.$byModal.show('modal-post-inform')
-      this.$root.$emit('bv::show::modal', 'modal-post-inform')
+      // 3. 로그인 여부 체크 후 모달 출력
+      if (window.localStorage.token) {
+        return this.$root.$emit('bv::show::modal', 'modal-post-inform')
+      } else {
+        alert('로그인을 한 후 이용해주세요.')
+        return false
+      }
     },
     onClickEdit(id) {
       // (수정을 위한) 상세정보
@@ -203,11 +205,14 @@ export default {
     },
     isMyContent(userId) {
       // 해당 컨텐츠의 작성자 일치 여부
-      if (userId === this.$store.getters.TokenUser.id) {
+      if (userId === this.$store.getters.TokenUser.userid) {
         return true
       } else {
         return false
       }
+    },
+    onRowSelected() {
+      this.$router.push('/sub/study/study-detail')
     }
   }
 }

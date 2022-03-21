@@ -143,9 +143,9 @@ export default {
         }
       ],
       activites_title: [
-        { key: 'id', label: '번호' },
         { key: 'userId', label: '작성자' },
-        { key: 'title', label: '제목' }
+        { key: 'title', label: '제목' },
+        { key: 'createdAt', label: '등록일' }
       ],
       activites_data: [
         { activites_num: 1, activites_name: '김경은', activites_title_data: '모집합니다' },
@@ -265,9 +265,13 @@ export default {
       // 2. 상세정보 초기화
       this.$store.dispatch('actCompetitionInit')
 
-      // 3. 모달 출력
-      // this.$byModal.show('modal-post-inform')
-      this.$root.$emit('bv::show::modal', 'modal-post-inform')
+      // 3. 로그인 여부 체크 후 모달 출력
+      if (window.localStorage.token) {
+        return this.$root.$emit('bv::show::modal', 'modal-post-inform')
+      } else {
+        alert('로그인을 한 후 이용해주세요.')
+        return false
+      }
     },
     onClickEdit(id) {
       // (수정을 위한) 상세정보

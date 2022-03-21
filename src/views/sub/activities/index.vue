@@ -26,7 +26,7 @@
     </div>
     <b-button class="activities-detail-team-btn" @click="onClickAddNew">게시글 등록</b-button>
     <div>
-      <b-table small hover striped :items="activityList" :fields="activities_title" style="margin-bottom: 70px">
+      <b-table small hover striped :items="postList" style="margin-bottom: 70px">
         <template #cell(User)="row">
           {{ row.item.User && row.item.User.nickname }}
         </template>
@@ -54,7 +54,7 @@
     <div class="activities-main activitiesMain">
       <b-row v-for="n in 1" :key="n">
         <b-col v-for="k in member.length" :key="k" cols="12" md="3" style="margin-bottom: 20px">
-          <b-card @click="$router.push('/sub/activities/activities-detail')">
+          <b-card v-model="postId" @click="$router.push('/sub/activities/activities-detail')">
             <div class="activities-main-box">
               <img :src="member[k - 1].poto" alt="" />
             </div>
@@ -85,6 +85,7 @@ export default {
   },
   data() {
     return {
+      postId: 1,
       keyword: '',
       member: [
         {
@@ -145,7 +146,7 @@ export default {
     }
   },
   computed: {
-    activityList() {
+    postList() {
       return this.$store.getters.PostList
     },
     insertedResult() {
@@ -254,23 +255,27 @@ export default {
       // 신규등록
 
       // 1. 입력모드 설정
-      this.$store.dispatch('actActivityInputMode', 'insert')
+      this.$store.dispatch('actPostInputMode', 'insert')
 
       // 2. 상세정보 초기화
-      this.$store.dispatch('actActivityInit')
+      this.$store.dispatch('actPostInit')
 
-      // 3. 모달 출력
-      // this.$byModal.show('modal-post-inform')
-      this.$root.$emit('bv::show::modal', 'modal-board-inform')
+      // 3. 로그인 여부 체크 후 모달 출력
+      if (window.localStorage.token) {
+        return this.$root.$emit('bv::show::modal', 'modal-board-inform')
+      } else {
+        alert('로그인을 한 후 이용해주세요.')
+        return false
+      }
     },
     onClickEdit(id) {
       // (수정을 위한) 상세정보
 
       // 1. 입력모드 설정
-      this.$store.dispatch('actActivityInputMode', 'update')
+      this.$store.dispatch('actPostInputMode', 'update')
 
       // 2. 상세정보 초기화
-      this.$store.dispatch('actActivityInit', id)
+      this.$store.dispatch('actPostInit', id)
 
       // 3. 모달 출력
       // this.$byModal.show('modal-post-inform')
@@ -280,7 +285,7 @@ export default {
       // 삭제
       this.$byModal.msgBoxConfirm('삭제하시겠습니까?').then(value => {
         if (value) {
-          this.$store.dispatch('actActivityDelete', id)
+          this.$store.dispatch('actPostDelete', id)
         }
       })
     },

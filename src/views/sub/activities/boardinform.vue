@@ -10,7 +10,7 @@
             id="title"
             v-model="post.title"
             placeholder="제목을 입력하세요."
-            :disabled="inputMode === 'update' && post.userId !== this.$store.getters.TokenUser.id"
+            :disabled="inputMode === 'update' && post.userId !== this.$store.getters.TokenUser.userid"
           ></b-form-input>
           <!-- <div id="hash_wrap">
             <label for="tag"></label>
@@ -33,7 +33,7 @@
           <div v-if="inputMode === 'update' && post.id !== null">
             <!-- 글 수정 모드(내 글은 수정 모드로) -->
             <editor
-              v-if="post.userId === this.$store.getters.TokenUser.id"
+              v-if="post.userId === this.$store.getters.TokenUser.userid"
               ref="toastuiEditor"
               :options="editorOptions"
               :initial-value="post.content"
@@ -67,7 +67,7 @@ export default {
   },
   data() {
     return {
-      activityPost: {
+      post: {
         id: null,
         userId: null,
         categoryId: null,

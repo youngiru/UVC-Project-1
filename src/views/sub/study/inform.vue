@@ -71,6 +71,7 @@ export default {
         id: null,
         userId: null,
         categoryId: null,
+        boardId: 1,
         title: null,
         content: null,
         tag: null,
@@ -83,7 +84,7 @@ export default {
         },
         Category: {
           id: null,
-          boardId: null,
+          boardId: 1,
           name: null
         }
       },
@@ -111,10 +112,10 @@ export default {
   },
   computed: {
     infoData() {
-      return this.$store.getters.Activity
+      return this.$store.getters.Study
     },
     inputMode() {
-      return this.$store.getters.ActivityInputMode
+      return this.$store.getters.StudyInputMode
     },
     getTitle() {
       let title = ''
@@ -147,25 +148,23 @@ export default {
     onSubmit() {
       // 1. 등록인 경우
       if (this.inputMode === 'insert') {
-        // this.post.userId = this.$store.getters.TokenUser.id // 로그인 사용자PK
         const editorContent = this.$refs.toastuiEditor.invoke('getHTML') // 에디터에 작성한 컨텐츠 담기
         this.post.content = editorContent
-        console.log('onSubmit', editorContent)
         this.$store.dispatch('actStudyInsert', this.post) // 입력 실행
       }
 
       // 2. 수정인 경우(작성자 본인만 수정 가능)
-      if (this.inputMode === 'update' && this.post.userId === this.$store.getters.TokenUser.id) {
+      if (this.inputMode === 'update' && this.post.userId === this.$store.getters.TokenUser.userid) {
         const editorContent = this.$refs.toastuiEditor.invoke('getHTML') //에디터에 작성한 컨텐츠 담기
         this.post.content = editorContent
 
-        this.$store.dispatch('actActivityUpdate', this.post) // 수정 실행
+        this.$store.dispatch('actStudyUpdate', this.post) // 수정 실행
       }
       if (this.inputMode === 'update') {
         const editorContent = this.$refs.toastuiEditor.invoke('getHTML') //에디터에 작성한 컨텐츠 담기
         this.post.content = editorContent
 
-        this.$store.dispatch('actActivityUpdate', this.post) // 수정 실행
+        this.$store.dispatch('actStudyUpdate', this.post) // 수정 실행
       }
     },
     uploadImage: async blob => {

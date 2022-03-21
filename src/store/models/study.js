@@ -64,7 +64,6 @@ export default {
         // .get(`/serverApi/posts?boardId=1`, payload)
         .then(response => {
           const studyList = response && response.data && response.data.rows
-          console.log('studyList', response)
           context.commit('setStudyList', studyList)
         })
         .catch(error => {
@@ -83,12 +82,13 @@ export default {
         .post(`/serverApi/posts?boardId=1`, payload)
         .then(response => {
           // 정상 등록인 경우 처리
-          const insertedResult = response && response.data && response.data.id
+          console.log('inser', response)
+          const insertedResult = response && response.data
           context.commit('setInsertedResult', insertedResult)
         })
         .catch(error => {
           // 에러인 경우 처리
-          console.error('PostInsert.error', error)
+          console.error('StudyInsert.error', error)
           context.commit('setInsertedResult', -1)
         })
     },

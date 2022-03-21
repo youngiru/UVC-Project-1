@@ -19,12 +19,23 @@
       <span>댓글</span>
       <b-form-textarea
         id="textarea-no-resize"
+        v-model="teamCmt.content"
         placeholder="댓글을 입력해주세요"
         rows="3"
         no-resize
         class="study-detail-textarea"
       ></b-form-textarea>
-      <button @click="onClickAddNew">완료</button>
+      <b-button type="submit" variant="primary" @click="addCmt"> 완료</b-button>
+    </div>
+    <div>
+      <b-table small hover striped :items="teamCmtList" :fields="teamCmtfields" style="margin-bottom: 70px">
+        <template #cell(nickname)="row">
+          {{ row.item.User && row.item.User.nickname }}
+        </template>
+        <template #cell(content)="row">
+          {{ row.item.content }}
+        </template>
+      </b-table>
     </div>
     <div class="study-detail-btn">
       <button><router-link to="/sub/study" class="color_000">이전</router-link></button>
@@ -36,53 +47,63 @@
 export default {
   data() {
     return {
-      field: [
+      teamCmtfields: [
         {
-          key: 'id',
-          label: '번호'
-        },
-        {
-          key: 'nickName',
+          key: 'nickname',
           label: '작성자'
         },
         {
           key: 'content',
-          label: '내용'
+          label: '댓글'
+        },
+        {
+          key: 'createdAt',
+          label: '등록일'
         }
-      ]
+      ],
+      teamCmt: {
+        id: null,
+        teamId: 2,
+        userId: null,
+        content: null,
+        User: {
+          id: null,
+          nickname: null,
+          userid: null
+        },
+        createdAt: null
+      },
+      search: {
+        id: 2
+      }
     }
   },
   computed: {
-    postList() {
-      return this.$store.getters.PostList
+    teamCmtList() {
+      return this.$store.getters.TeamCmtList
     },
     insertedResult() {
-      return this.$store.getters.PostInsertedResult
+      return this.$store.getters.TeamCmtInsertedResult
     },
     updatedResult() {
-      return this.$store.getters.PostUpdatedResult
+      return this.$store.getters.TeamCmtUpdatedResult
     },
     deletedResult() {
-      return this.$store.getters.PostDeletedResult
+      return this.$store.getters.TeamCmtDeletedResult
     }
   },
   watch: {
     insertedResult(value) {
       // 등록 후 처리
       if (value !== null) {
-        if (value > 0) {
+        if (value !== null) {
           // 등록이 성공한 경우
 
           // 1. 메시지 출력
-          // this.$byToast.toast('등록되었습니다.', {
-          //   title: 'SUCCESS',
-          //   variant: 'success',
-          //   solid: true
-          // })
           alert('등록되었습니다!')
 
           // 2. 리스트 재검색
-          this.searchPostList()
+          this.searchTeamCmtList()
         } else {
           // 등록이 실패한 경우
 
@@ -110,7 +131,7 @@ export default {
             })
 
             // 2. 리스트 재검색
-            this.searchPostList()
+            this.searchTeamCmtList()
           } else {
             // 수정이 실패한 경우
 
@@ -141,27 +162,91 @@ export default {
     }
   },
   created() {
-    this.searchPostList()
+    this.searchTeamCmtList()
   },
   methods: {
-    onRowSelected() {
-      this.$router.push('/sub/study/study-detail')
+    searchTeamCmtList() {
+      this.$store.dispatch('actTeamCmtList', this.search)
     },
-    searchPostList() {
-      this.$store.dispatch('actStudyList', this.search)
+    addCmt() {
+      this.$store.dispatch('actTeamCmtInsert', this.teamCmt)
+
+      // evt.preventDefault()
+      // this.$axios.post(`${this.$cfg.path.api}data/comment`, this.formCmt)
+      //   .then(res => {
+      //     if (!res.data.success) throw new Error(res.data.msg)
+      //     return this.swalSuccess('댓글 추가 완료')
+      //   })
+      //   .then(() => {
+      //     this.$refs.mdAddCmt.hide()
+      //     this.refresh()
+      //   })
+      //   .catch(err => {
+      //     this.swalError(err.message)
+      //   })
     },
-    onClickAddNew() {
-      // 신규등록
-
-      // 1. 입력모드 설정
-      this.$store.dispatch('actStudyInputMode', 'insert')
-
-      // 2. 상세정보 초기화
-      this.$store.dispatch('actStudyInit')
-
-      // 3. 모달 출력
-      // this.$byModal.show('modal-post-inform')
-      this.$root.$emit('bv::show::modal', 'modal-post-inform')
+    modCmt() {
+      this.$swal({
+        title: '댓글 수정 변경',
+        dangerMode: true,
+        buttons: {
+          cancel: {
+            text: '취소',
+            visible: true
+          },
+          confirm: {
+            text: '수정'
+          }
+        }
+      })
+        .then(res => {
+          if (!res) throw new Error('')
+          return this.$axios.put(`${this.$cfg.path.api}data/comment`, this.formCmt)
+        })
+        .then(res => {
+          if (!res.data.success) throw new Error(res.data.msg)
+          return this.swalSuccess('댓글 수정 완료')
+        })
+        .then(() => {
+          this.$refs.mdModCmt.hide()
+          this.refresh()
+        })
+        .catch(err => {
+          if (err.message) this.swalError(err.message)
+          else this.swalWarning('댓글 수정 취소')
+        })
+    },
+    delCmt(cmt) {
+      this.$swal({
+        title: '댓글 삭제',
+        dangerMode: true,
+        buttons: {
+          cancel: {
+            text: '취소',
+            visible: true
+          },
+          confirm: {
+            text: '삭제'
+          }
+        }
+      })
+        .then(res => {
+          if (!res) throw new Error('')
+          return this.$axios.delete(`${this.$cfg.path.api}data/comment`, {
+            params: { _id: cmt._id }
+          })
+        })
+        .then(res => {
+          if (!res.data.success) throw new Error(res.data.msg)
+          return this.swalSuccess('댓글 삭제 완료')
+        })
+        .then(() => {
+          this.refresh()
+        })
+        .catch(err => {
+          if (err.message) return this.swalError(err.message)
+          this.swalWarning('댓글 삭제 취소')
+        })
     }
   }
 }

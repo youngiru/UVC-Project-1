@@ -23,10 +23,8 @@ api.interceptors.response.use(
     // header.token 자동 갱신
     const token = response.headers.token // token을 header에서 받은 경우
     if (token) {
-      console.log('apiUtil if token', response)
       window.localStorage.setItem('token', token)
     }
-    console.log('apiUtil response', response)
     return response
   },
   async error => {

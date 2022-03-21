@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-modal id="modal-mypage-inform" :items="MypageList" :title="getTitle" @ok="onSubmit">
+    <b-modal id="modal-mypage-inform" :items="mypageInfo" :title="getTitle" @ok="onSubmit">
       <div>
         <b-form-group label="이름" label-for="name" label-cols="3">
           <b-form-input id="name" v-model="mypage.name"></b-form-input>
@@ -45,7 +45,7 @@ export default {
     }
   },
   computed: {
-    infoData() {
+    mypageInfo() {
       return this.$store.getters.Mypage
     },
     inputMode() {
@@ -67,7 +67,7 @@ export default {
   },
   watch: {
     // 모달이 열린 이후에 감지됨
-    infoData(value) {
+    mypageInfo(value) {
       this.mypage = { ...value }
 
       this.setDefaultValues() // 기본값 세팅
@@ -75,7 +75,7 @@ export default {
   },
   created() {
     // 모달이 최초 열릴때 감지됨
-    this.mypage = { ...this.infoData }
+    this.mypage = { ...this.mypageInfo }
 
     this.setDefaultValues() // 기본값 세팅
   },
